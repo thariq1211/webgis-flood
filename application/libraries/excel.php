@@ -1,0 +1,18 @@
+<?php
+if (!defined('BASEPATH')) exit('No direct script access allowed');
+/*
+ *  ======================================= 
+ *  Author     : Team Tech Arise 
+ *  License    : Protected 
+ *  Email      : info@techarise.com 
+ * 
+ *  ======================================= 
+ */
+include APPPATH.'third_party/PHPExcel/PHPExcel.php';
+
+class Excel extends PHPExcel {
+	public function __construct() {
+		parent::__construct();
+	}
+}
+?>
