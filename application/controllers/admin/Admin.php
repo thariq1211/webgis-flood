@@ -10,6 +10,7 @@ class Admin extends CI_Controller {
 		$this->load->model('dataset');
 		$this->load->model('cluster');
 		$this->load->library('excel');
+		$this->load->library('googlemaps');
 	}
 	public function ceklogin($path)
 	{
@@ -926,7 +927,25 @@ class Admin extends CI_Controller {
 	}
 	public function mapping()
 	{
-		$this->load->view('admin/mappingbencana');
+		$this->load->library('googlemaps');
+            $config=array();
+            $config['apiKey']="AIzaSyDzlah4LE55Jv-CPzpcjsXY-zz3ABdyelk";
+            $config['center']="-8.233964, 113.677548";
+            $config['zoom']=10.5;
+            $config['draggable']=FALSE;
+            $config['disableDefaultUI']=TRUE;
+            $config['map_height']="700px";
+            $config['map_width']="1110px";
+            $config['kmlLayerURL']="https://raw.githubusercontent.com/thariq1211/kml/master/peta%20kecamatan.kml";
+            // $config['kmlLayerURL']="https://raw.githubusercontent.com/thariq1211/kml/master/Ajung.kml";
+            // $config['kmlLayerURL']="https://raw.githubusercontent.com/thariq1211/kml/master/Kantor%20Pos%20Sumberjambe.kml";
+            $config['kmlLayerPreserveViewport']=TRUE;
+            $this->googlemaps->initialize($config);
+            $polygon = array();
+            $polygon['points'] = array('-8.213368, 113.657465');
+            $this->googlemaps->add_polygon($polygon);
+            $data['map']=$this->googlemaps->create_map();
+		$this->load->view('admin/mappingbencana',$data);
 		// $this->ceklogin('admin/mappingbencana.php');
 	}
 }

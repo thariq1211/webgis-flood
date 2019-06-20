@@ -5,11 +5,11 @@
  <?php $this->load->view('_partials/head'); ?>
  <style type="text/css" media="screen">
    #map {
-  height: 500px;
+    height: 750px;
 
-}
- </style>
- <?php echo $map['js']; ?>
+  }
+</style>
+<!-- <?php echo $map['js']; ?> -->
 </head>
 
 <body id="reportsPage">
@@ -20,50 +20,43 @@
     <?php $this->load->view('_partials/breadcrumb'); ?>
   </div>
   <!-- row -->
-  <h2 class="tm-block-title">Pemetaan Bencana</h2><!-- <div id="map"></div> -->
-     <?php echo $map['html']; ?>
-     </div>
+  <h2 class="tm-block-title">Pemetaan Bencana</h2><div id="map"></div>
+  <!-- <?php echo $map['html']; ?> -->
+</div>
 <?php $this->load->view('_partials/footer'); ?>
 </div>
 
 <?php $this->load->view('_partials/js'); ?>
 <script>
   function initMap() {
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 1,
-    center: {lat: -8.184486, lng: 113.668076},
-    gestureHandling: 'none',
-          zoomControl: false
-  });
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 10.8,
+      center: {lat: -8.250000, lng: 113.668076},
+      draggable:false,
+      zoomControl: false
+    });
+  var json;
   
+  // map.data.loadGeoJson('jsonData');
+  var promise = $.getJSON("<?php echo base_url('assets/json/peta_kecamatan.geojson'); ?>"); //same as map.data.loadGeoJson();
+      promise.then(function(data){
+        cachedGeoJson = data; //save the geojson in case we want to update its values
+        map.data.addGeoJson(cachedGeoJson,{idPropertyName:"id"});  
+      });
+  map.data.setStyle(function(feature){
+    var color = 'blue';
+    return{
+  fillColor: color,
+  fillOpacity: 0.5,
+  strokeWeight: 1};
+});
 
-  var ctaLayer = new google.maps.KmlLayer({
-    url: 'https://raw.githubusercontent.com/thariq1211/kml/master/Kabupaten%20Jember.kml',
-    map: map
-  });
-  // var drawingManager = new google.maps.drawing.DrawingManager({
-  //   drawingMode: google.maps.drawing.OverlayType.MARKER,
-  //   drawingControl: true,
-  //   drawingControlOptions: {
-  //     position: google.maps.ControlPosition.TOP_CENTER,
-  //     drawingModes: ['marker', 'circle', 'polygon', 'polyline', 'rectangle']
-  //   },
-  //   markerOptions: {icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'},
-  //   circleOptions: {
-  //     fillColor: '#ffff00',
-  //     fillOpacity: 1,
-  //     strokeWeight: 5,
-  //     clickable: false,
-  //     editable: true,
-  //     zIndex: 1
-  //   }
-  // });
-  // drawingManager.setMap(map);
+  // NOTE: This uses cross-domain XHR, and may not work on older browsers.
+  // map.data.loadGeoJson('https://storage.googleapis.com/mapsdevsite/json/google.json');
+  
 }
 </script>
-<script async defer
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzlah4LE55Jv-CPzpcjsXY-zz3ABdyelk&callback=initMap">
-</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzlah4LE55Jv-CPzpcjsXY-zz3ABdyelk&callback=initMap"></script>
 </body>
 
 </html>

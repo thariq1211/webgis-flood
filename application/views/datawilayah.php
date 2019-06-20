@@ -21,7 +21,7 @@
       <thead>
        <tr>
         <th scope="col">Kecamatan.</th>
-        <th scope="col">Luas Wilayah (HA)</th>
+        <th scope="col">Luas Wilayah (KM2)</th>
         <th scope="col">Jenis Tanah</th>
         <th scope="col">Kemiringan Tanah</th>
         <th scope="col">Penggunaan Lahan</th>
@@ -34,12 +34,12 @@
       
      <tr>
       <th><b><?php echo $key->kecamatan; ?></b></th>
-      <td><?php echo $key->luas_wilayah; ?> HA</td>
+      <td><?php echo $key->luas_wilayah; ?> KM</td>
      <td><b><?php echo $key->jenis_tanah; ?></b></td>
      <td><b><?php echo $key->kemiringan; ?></b></td>
      <td><b><?php echo $key->penggunaan_lahan; ?></b></td>
      <td><b><?php echo $key->orde_sungai; ?></b></td>
-     <td><b><?php echo $key->curah_hujan; ?></b></td>
+     <td><b><?php echo $key->curah_hujan; ?> mm</b></td>
    </tr>
     <?php endforeach ?>
 </tbody>

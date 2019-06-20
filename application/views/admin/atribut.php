@@ -59,7 +59,7 @@ if ($_SESSION['cek_login'] != '1') {
                     <tr>
                       <!-- <td><?php echo $key->id; ?></td> -->
                       <td><?php echo $key->kecamatan; ?></td>
-                      <td><?php echo $key->luas_wilayah; ?> HA</td>
+                      <td><?php echo $key->luas_wilayah; ?> KM2</td>
                       <td><?php echo $key->jenis_tanah; ?></td>
                       <td><?php echo $key->kemiringan; ?></td>
                       <td><?php echo $key->penggunaan_lahan; ?></td>

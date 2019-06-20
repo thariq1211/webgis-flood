@@ -47,7 +47,7 @@
       <tr>
         <th><b>4</b></th>
         <td>Jumlah <i>Cluster</i> terbanyak</td><?php foreach ($hc->result() as $key): ?>
-        <td><b><?php echo $key->hasil_cluster; ?> : <?php echo $key->hc; ?></b></td>
+        <td><b><?php echo $key->hc; ?> Kecamatan</b></td>
         <?php endforeach ?>
       </tr>
     </tbody>
@@ -61,39 +61,7 @@
 </div>
 
 <?php $this->load->view('_partials/js'); ?>
-<script>
-  function initMap() {
 
-        // load the map
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 40, lng: -100},
-          zoom: 4,
-          styles: mapStyle
-        });
-
-        var mapStyle = [{
-          'featureType': 'all',
-          'elementType': 'all',
-          'stylers': [{'visibility': 'off'}]
-        }, {
-          'featureType': 'landscape',
-          'elementType': 'geometry',
-          'stylers': [{'visibility': 'on'}, {'color': '#fcfcfc'}]
-        }, {
-          'featureType': 'water',
-          'elementType': 'labels',
-          'stylers': [{'visibility': 'off'}]
-        }, {
-          'featureType': 'water',
-          'elementType': 'geometry',
-          'stylers': [{'visibility': 'on'}, {'hue': '#5f94ff'}, {'lightness': 60}]
-        }];
-      }
-
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzlah4LE55Jv-CPzpcjsXY-zz3ABdyelk&callback=initMap">
-  </script>
 </body>
 
 </html>

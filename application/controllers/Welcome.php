@@ -48,24 +48,7 @@ class Welcome extends CI_Controller {
 	}
 	public function petabanjir()
 	{
-		$this->load->library('googlemaps');
-            $config=array();
-            $config['apiKey']="AIzaSyDzlah4LE55Jv-CPzpcjsXY-zz3ABdyelk";
-            $config['center']="-8.233964, 113.677548";
-            $config['zoom']=10.5;
-            $config['draggable']=FALSE;
-            $config['disableDefaultUI']=TRUE;
-            $config['map_height']="700px";
-            $config['map_width']="1110px";
-            $config['kmlLayerURL']="https://raw.githubusercontent.com/thariq1211/kml/master/peta%20kecamatan.kml";
-            // $config['kmlLayerURL']="https://raw.githubusercontent.com/thariq1211/kml/master/Ajung.kml";
-            // $config['kmlLayerURL']="https://raw.githubusercontent.com/thariq1211/kml/master/Kantor%20Pos%20Sumberjambe.kml";
-            $config['kmlLayerPreserveViewport']=TRUE;
-            $this->googlemaps->initialize($config);
-            $polygon = array();
-            $polygon['points'] = array('-8.213368, 113.657465');
-            $this->googlemaps->add_polygon($polygon);
-            $data['map']=$this->googlemaps->create_map();
+		$data['hasil_cluster'] = $this->db->query("select * from data_atribut join hasil_cluster on data_atribut.id=hasil_cluster.id_atribut");
         $this->load->view('mappingbanjir.php',$data);
 	}
 	
