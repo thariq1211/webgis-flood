@@ -6,8 +6,6 @@
 </head>
 <body id="reportsPage">
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
-
   <div class="" id="home">
     <?php $this->load->view('_partials/navbar'); ?>
     <div class="container">
@@ -129,15 +127,15 @@ function drawChart() {
          <td><b><?php echo $key->d4; ?></b></td>
          <td><b><?php echo $key->d5; ?></b></td>
          <td style="color:<?php if ($key->hasil_cluster=="C1") {
-           echo "#ff5722";
+           echo "#3366CC";
          } if ($key->hasil_cluster=="C2") {
-           echo "#ff9800";
+           echo "#DC3912";
          } if ($key->hasil_cluster=="C3") {
-           echo "#ffc107";
+           echo "#FF9900";
          } if ($key->hasil_cluster=="C4") {
-           echo "#ffeb3b";
+           echo "#109618";
          } if ($key->hasil_cluster=="C5") {
-           echo "#cddc39";
+           echo "#990099";
          } ?>"><b><div class="tm-status-circle <?php if ($key->hasil_cluster=="C1") {
            echo "c1";
          } if ($key->hasil_cluster=="C2") {

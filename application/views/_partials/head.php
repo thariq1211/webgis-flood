@@ -39,24 +39,24 @@
     background-color: #3faf9f;
   }
   .c1 {
-    background-color: #ff5722;
-    box-shadow: 0 0 8px #ff5722, inset 0 0 8px #ff5722;
+    background-color: #3366CC;
+    box-shadow: 0 0 8px #3366CC, inset 0 0 8px #3366CC;
   }
   .c2 {
-    background-color: #ff9800;
-    box-shadow: 0 0 8px #ff9800, inset 0 0 8px #ff9800;
+    background-color: #DC3912;
+    box-shadow: 0 0 8px #DC3912, inset 0 0 8px #DC3912;
   }
   .c3 {
-    background-color: #ffc107;
-    box-shadow: 0 0 8px #ffc107, inset 0 0 8px #ffc107;
+    background-color: #FF9900;
+    box-shadow: 0 0 8px #FF9900, inset 0 0 8px #FF9900;
   }
   .c4 {
-    background-color: #ffeb3b;
-    box-shadow: 0 0 8px #ffeb3b, inset 0 0 8px #ffeb3b;
+    background-color: #109618;
+    box-shadow: 0 0 8px #109618, inset 0 0 8px #109618;
   }
   .c5 {
-    background-color: #cddc39;
-    box-shadow: 0 0 8px #cddc39, inset 0 0 8px #cddc39;
+    background-color: #990099;
+    box-shadow: 0 0 8px #990099, inset 0 0 8px #990099;
   }
   .tm-footer{
     background-color: #409a99;

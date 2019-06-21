@@ -49,9 +49,9 @@
           <a class="dropdown-item" href="<?php echo base_url('admin/kmeans') ?>">Generate K-Means</a>
           </div>
       </li>
-      <li class="nav-item <?php echo $this->uri->segment(1) == 'petabanjir' ? 'active': '' ?>">
-        <a class="nav-link" href="<?php echo base_url('petabanjir')?>">
+      <li class="nav-item <?php echo $this->uri->segment(2) == 'hasil_clustering' ? 'active': '' ?>">
+        <a class="nav-link" href="<?php echo base_url('admin/hasil_clustering')?>">
           <i class="fas fa-fw fa-water"></i>
-          <span>Pemetaan Bencana</span></a>
+          <span>Hasil Analisis <i>Clustering</i></span></a>
       </li>
     </ul>

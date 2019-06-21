@@ -59,10 +59,23 @@ if ($_SESSION['cek_login'] != '1') {
                       <td><?php echo $key->d3; ?></td>
                       <td><?php echo $key->d4; ?></td>
                       <td><?php echo $key->d5; ?></td>
-                      <td><?php echo $key->hasil_cluster; ?></td>
-                    </tr>
-                  <?php endforeach ?>
-                </tbody>
+                      <td><?php 
+                        $cluster = $key->hasil_cluster;
+                        if ($cluster=="C1") {
+                          echo "Banjir Tinggi";
+                        } else if($cluster=="C2"){
+                          echo "Banjir Sedang";
+                        }else if($cluster=="C3"){
+                          echo "Banjir Rendah";
+                        }else if($cluster=="C4"){
+                          echo "Banjir Aman";
+                        }else if($cluster=="C5"){
+                          echo "Non Banjir";
+                        }
+                        ?></td>
+                      </tr>
+                    <?php endforeach ?>
+                  </tbody>
               </table>
             </div>
           </div>

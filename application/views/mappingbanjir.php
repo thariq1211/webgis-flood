@@ -21,7 +21,6 @@
   </div>
   <!-- row -->
   <h2 class="tm-block-title">Pemetaan Bencana</h2><div id="map"></div>
-  <!-- <?php echo $map['html']; ?> -->
 </div>
 <?php $this->load->view('_partials/footer'); ?>
 </div>
@@ -43,46 +42,45 @@
         cachedGeoJson = data; //save the geojson in case we want to update its values
         map.data.addGeoJson(cachedGeoJson,{idPropertyName:"id"});  
       });
+  // map.data.loadGeoJson(
+  //     '<?php echo base_url('assets/json/peta_kecamatan.json'); ?>');
+  map.data.addListener('mouseover', function(event) {
+    document.getElementById('info-box').textContent =
+    event.feature.getProperty('Name');
+  });
 
-  var i = 0;
-  <?php foreach ($hasil_cluster as $key): ?>
-
-  kecamatanDB = "<?php echo $key->kecamatan; ?>";
-  var hasil_cluster = "<?php echo $key->hasil_cluster; ?>";
-  var color = '';
-  i++;
-  console.log(kecamatanDB);
   map.data.setStyle(function(feature){
-    var kecamatan = feature.getProperty('Name');
-    if (kecamatanDB == kecamatan) {
+    var kecamatanJS = feature.getProperty('Name');
+    console.log(kecamatanJS);
+    <?php foreach ($hasil_cluster as $key): ?>
+    var kecamatanDB = "<?php echo $key->kecamatan; ?>";
+    var hasil_cluster = "<?php echo $key->hasil_cluster; ?>";
+    if (kecamatanJS == kecamatanDB) {
+      var color = '';
       if (hasil_cluster == "C1") {
-        color = 'red';
+        color = '#3366CC';
         console.log("1");
-      }else if(hasil_cluster == "C2"){
-        color = 'green';
+      }if(hasil_cluster == "C2"){
+        color = '#DC3912';
         console.log("2");
-      }else if(hasil_cluster == "C3"){
-        color = 'yellow';
+      }if(hasil_cluster == "C3"){
+        color = '#FF9900';
         console.log("3");
-      }else if (hasil_cluster == "C4") {
-        color = 'orange';
+      }if (hasil_cluster == "C4") {
+        color = '#109618';
         console.log("4");
-      }else{
-        color = 'blue';
+      }if(hasil_cluster == "C5"){
+        color = '#990099';
         console.log("5");
       }
-    } else {
-      color = 'white';
-      // console.log("6");
-    }
-    return{
-      fillColor: color,
-      fillOpacity: 0.5,
-      strokeWeight: 1
-    };
-    i = 0;
-  });
-<?php endforeach ?> 
+    } 
+  <?php endforeach ?> 
+  return{
+    fillColor: color,
+    fillOpacity: 0.5,
+    strokeWeight: 1
+  };
+});
 
   // NOTE: This uses cross-domain XHR, and may not work on older browsers.
   // map.data.loadGeoJson('https://storage.googleapis.com/mapsdevsite/json/google.json');

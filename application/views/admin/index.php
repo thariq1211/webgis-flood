@@ -79,10 +79,10 @@ if ($_SESSION['cek_login'] != '1') {
                   <i class="fas fa-fw fa-life-ring"></i>
                 </div>
                 <?php foreach ($hc->result() as $key): ?>
-                <div class="mr-5">Jumlah Cluster terbanyak: <?php echo $key->hasil_cluster; ?></div>
+                <div class="mr-5">Jumlah Cluster terbanyak: <?php echo $key->hc; ?></div>
                 <?php endforeach ?>
               </div>
-              <a class="card-footer text-white clearfix small z-1" href="<?php echo base_url('admin/admin/iterasi_kmeans_hasil'); ?>">
+              <a class="card-footer text-white clearfix small z-1" href="<?php echo base_url('admin/hasil_clustering'); ?>">
                 <span class="float-left">View Details</span>
                 <span class="float-right">
                   <i class="fas fa-angle-right"></i>

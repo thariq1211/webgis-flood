@@ -38,12 +38,9 @@
         ]
     },
     options: optionsBar
-};,
-configPie,
-lineChart;
-barChart, pieChart;
-        // DOM is ready
-        $(function () {
+};
+
+$(function () {
             drawLineChart(); // Line Chart
             drawBarChart(); // Bar Chart
             drawPieChart(); // Pie Chart

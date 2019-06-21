@@ -60,5 +60,6 @@ $route['admin/clustering'] = 'admin/admin/clustering';
 $route['admin/atribut'] = 'admin/admin/atribut';
 $route['admin/cluster'] = 'admin/admin/centroid';
 $route['admin/kmeans'] = 'admin/admin/iterasi_kmeans';
+$route['admin/hasil_clustering'] = 'admin/admin/iterasi_kmeans_hasil';
 $route['logout'] = 'admin/login/logout';
 
