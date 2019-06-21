@@ -48,9 +48,9 @@ class Welcome extends CI_Controller {
 	}
 	public function petabanjir()
 	{
-		$data['hasil_cluster'] = $this->db->query("select * from data_atribut join hasil_cluster on data_atribut.id=hasil_cluster.id_atribut");
+		$data['hasil_cluster'] = $this->db->query("select * from data_atribut join hasil_cluster on data_atribut.id=hasil_cluster.id_atribut")->result();
         $this->load->view('mappingbanjir.php',$data);
+        //var_dump ($data);
 	}
-	
 	
 }

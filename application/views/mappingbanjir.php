@@ -35,21 +35,54 @@
       draggable:false,
       zoomControl: false
     });
-  var json;
-  
+    var json;
+
   // map.data.loadGeoJson('jsonData');
   var promise = $.getJSON("<?php echo base_url('assets/json/peta_kecamatan.geojson'); ?>"); //same as map.data.loadGeoJson();
-      promise.then(function(data){
+  promise.then(function(data){
         cachedGeoJson = data; //save the geojson in case we want to update its values
         map.data.addGeoJson(cachedGeoJson,{idPropertyName:"id"});  
       });
+
+  var i = 0;
+  <?php foreach ($hasil_cluster as $key): ?>
+
+  kecamatanDB = "<?php echo $key->kecamatan; ?>";
+  var hasil_cluster = "<?php echo $key->hasil_cluster; ?>";
+  var color = '';
+  i++;
+  console.log(kecamatanDB);
   map.data.setStyle(function(feature){
-    var color = 'blue';
+    var kecamatan = feature.getProperty('Name');
+    if (kecamatanDB == kecamatan) {
+      if (hasil_cluster == "C1") {
+        color = 'red';
+        console.log("1");
+      }else if(hasil_cluster == "C2"){
+        color = 'green';
+        console.log("2");
+      }else if(hasil_cluster == "C3"){
+        color = 'yellow';
+        console.log("3");
+      }else if (hasil_cluster == "C4") {
+        color = 'orange';
+        console.log("4");
+      }else{
+        color = 'blue';
+        console.log("5");
+      }
+    } else {
+      color = 'white';
+      // console.log("6");
+    }
     return{
-  fillColor: color,
-  fillOpacity: 0.5,
-  strokeWeight: 1};
-});
+      fillColor: color,
+      fillOpacity: 0.5,
+      strokeWeight: 1
+    };
+    i = 0;
+  });
+<?php endforeach ?> 
 
   // NOTE: This uses cross-domain XHR, and may not work on older browsers.
   // map.data.loadGeoJson('https://storage.googleapis.com/mapsdevsite/json/google.json');
