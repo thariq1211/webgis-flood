@@ -30,6 +30,7 @@
 <?php $this->load->view('_partials/js'); ?>
 <script>
   function initMap() {
+    var infowindow = new google.maps.InfoWindow();
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 10.8,
       center: {lat: -8.250000, lng: 113.668076},
@@ -38,16 +39,16 @@
     });
     var json;
 
-  // map.data.loadGeoJson('jsonData');
-  var promise = $.getJSON("<?php echo base_url('assets/json/peta_kecamatan.geojson'); ?>"); //same as map.data.loadGeoJson();
-  promise.then(function(data){
-        cachedGeoJson = data; //save the geojson in case we want to update its values
-        map.data.addGeoJson(cachedGeoJson,{idPropertyName:"id"});  
-      });
-  // map.data.loadGeoJson(
-  //     '<?php echo base_url('assets/json/peta_kecamatan.json'); ?>');
-
-  map.data.setStyle(function(feature){
+  // // map.data.loadGeoJson('jsonData');
+  // var promise = $.getJSON("<?php echo base_url('assets/json/peta_kecamatan.geojson'); ?>"); //same as map.data.loadGeoJson();
+  // promise.then(function(data){
+  //       cachedGeoJson = data; //save the geojson in case we want to update its values
+  //       map.data.addGeoJson(cachedGeoJson,{idPropertyName:"id"});  
+  //     });
+  var data = new google.maps.Data({map: map});
+  data.loadGeoJson(
+    '<?php echo base_url('assets/json/peta_kecamatan.json'); ?>');
+  data.setStyle(function(feature){
     var kecamatanJS = feature.getProperty('Name');
     // console.log(kecamatanJS);
     <?php foreach ($hasil_cluster as $key): ?>
@@ -55,20 +56,26 @@
     var hasil_cluster = "<?php echo $key->hasil_cluster; ?>";
     if (kecamatanJS == kecamatanDB) {
       var color = '';
+      var cluster = '';
       if (hasil_cluster == "C1") {
-        color = '#3366CC';
+       color = '#3366CC';
+       cluster = 'Banjir Tinggi';
         // console.log("1");
       }if(hasil_cluster == "C2"){
-        color = '#DC3912';
+       color = '#DC3912';
+       cluster = 'Banjir Sedang';
         // console.log("2");
       }if(hasil_cluster == "C3"){
-        color = '#FF9900';
+       color = '#FF9900';
+       cluster = 'Banjir Rendah';
         // console.log("3");
       }if (hasil_cluster == "C4") {
-        color = '#109618';
+       color = '#109618';
+       cluster = 'Banjir Aman';
         // console.log("4");
       }if(hasil_cluster == "C5"){
-        color = '#990099';
+       color = '#990099';
+       cluster = 'Non Banjir';
         // console.log("5");
       }
     } 
@@ -79,15 +86,20 @@
     strokeWeight: 0.5
   };
 });
-  var contentString = '<h2>Kecamatan '+feature.getProperty('Name')+'</h2>';
-  var infowindow = new google.maps.InfoWindow({
-    content : contentString
+  var contentString = '<h2>Kecamatan</h2>';
+
+  // var marker = new google.maps.Marker({
+  //         position: feature.getType('MultiPolygon'),
+  //         map: map,
+  //         title: feature.getProperty('Kecamatan')
+  //       });
+  
+  data.addListener('click', function(event) {
+    infowindow.setContent(contentString);
+    infowindow.setPosition(event.feature.getGeometry().get());
+    infowindow.open(map);
+    console.log(event);
   });
-  map.data.addListener('click', function(event) {
-  // document.getElementById('info-box').textContent =
-      // event.feature.getProperty('Name');
-      infowindow.open(map,promise);
-});
   
 }
 </script>
