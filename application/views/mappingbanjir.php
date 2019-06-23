@@ -79,10 +79,14 @@
     strokeWeight: 0.5
   };
 });
-
+  var contentString = '<h2>Kecamatan '+feature.getProperty('Name')+'</h2>';
+  var infowindow = new google.maps.InfoWindow({
+    content : contentString
+  });
   map.data.addListener('click', function(event) {
-  document.getElementById('info-box').textContent =
-      event.feature.getProperty('Name');
+  // document.getElementById('info-box').textContent =
+      // event.feature.getProperty('Name');
+      infowindow.open(map,promise);
 });
   
 }
