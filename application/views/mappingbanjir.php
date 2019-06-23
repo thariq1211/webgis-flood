@@ -20,7 +20,9 @@
     <?php $this->load->view('_partials/breadcrumb'); ?>
   </div>
   <!-- row -->
-  <h2 class="tm-block-title">Pemetaan Bencana</h2><div id="map"></div>
+  <h2 class="tm-block-title">Pemetaan Bencana</h2>
+  <div id="map"></div>
+  <div id="info-box"></div>
 </div>
 <?php $this->load->view('_partials/footer'); ?>
 </div>
@@ -44,10 +46,6 @@
       });
   // map.data.loadGeoJson(
   //     '<?php echo base_url('assets/json/peta_kecamatan.json'); ?>');
-  map.data.addListener('mouseover', function(event) {
-    document.getElementById('info-box').textContent =
-    event.feature.getProperty('Name');
-  });
 
   map.data.setStyle(function(feature){
     var kecamatanJS = feature.getProperty('Name');
@@ -82,8 +80,10 @@
   };
 });
 
-  // NOTE: This uses cross-domain XHR, and may not work on older browsers.
-  // map.data.loadGeoJson('https://storage.googleapis.com/mapsdevsite/json/google.json');
+  map.data.addListener('click', function(event) {
+  document.getElementById('info-box').textContent =
+      event.feature.getProperty('Name');
+});
   
 }
 </script>
