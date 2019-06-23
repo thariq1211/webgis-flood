@@ -34,7 +34,7 @@
       
      <tr>
       <th><b><?php echo $key->kecamatan; ?></b></th>
-      <td><?php echo $key->luas_wilayah; ?> KM</td>
+      <td><?php echo $key->luas_wilayah; ?> KM2</td>
      <td><b><?php echo $key->jenis_tanah; ?></b></td>
      <td><b><?php echo $key->kemiringan; ?></b></td>
      <td><b><?php echo $key->penggunaan_lahan; ?></b></td>
