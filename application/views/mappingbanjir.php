@@ -51,7 +51,7 @@
 
   map.data.setStyle(function(feature){
     var kecamatanJS = feature.getProperty('Name');
-    console.log(kecamatanJS);
+    // console.log(kecamatanJS);
     <?php foreach ($hasil_cluster as $key): ?>
     var kecamatanDB = "<?php echo $key->kecamatan; ?>";
     var hasil_cluster = "<?php echo $key->hasil_cluster; ?>";
@@ -59,26 +59,26 @@
       var color = '';
       if (hasil_cluster == "C1") {
         color = '#3366CC';
-        console.log("1");
+        // console.log("1");
       }if(hasil_cluster == "C2"){
         color = '#DC3912';
-        console.log("2");
+        // console.log("2");
       }if(hasil_cluster == "C3"){
         color = '#FF9900';
-        console.log("3");
+        // console.log("3");
       }if (hasil_cluster == "C4") {
         color = '#109618';
-        console.log("4");
+        // console.log("4");
       }if(hasil_cluster == "C5"){
         color = '#990099';
-        console.log("5");
+        // console.log("5");
       }
     } 
   <?php endforeach ?> 
   return{
     fillColor: color,
-    fillOpacity: 0.5,
-    strokeWeight: 1
+    fillOpacity: 0.7,
+    strokeWeight: 0.5
   };
 });
 
