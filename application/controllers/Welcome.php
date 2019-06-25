@@ -30,7 +30,9 @@ class Welcome extends CI_Controller {
 		$data['centroid'] = $this->db->query('select count(sample_cluster) as cen from data_cluster');
 		$data['iterasi'] = $this->db->query('select max(iterasi) as it from centroid_temp');
 		$data['hc'] = $this->db->query('select max(hc) as hc, hasil_cluster from (select hasil_cluster, count( * ) as hc from hasil_cluster group by hasil_cluster) as A');
-		$this->load->view('home',$data);
+		// $this->load->view('home',$data);
+		
+		$this->load->view('admin/index',$data);
 	}
 	public function datajember()
 	{	$data['atribut'] = $this->dataset->getAll();

@@ -95,9 +95,10 @@
   //       });
   
   data.addListener('click', function(event) {
-    infowindow.setContent(contentString);
+    data.setZoom(8);
+    // infowindow.setContent(contentString);
     infowindow.setPosition(event.feature.getGeometry().get());
-    infowindow.open(map);
+    // infowindow.open(map);
     console.log(event);
   });
   
