@@ -34,7 +34,8 @@ class Admin extends CI_Controller {
 	public function atribut()
 	{
 		$data['atribut'] = $this->dataset->getAll();
-		$this->load->view('admin/atribut',$data);
+		$this->load->view('admin/atribut1', $data);
+		// $this->load->view('admin/atribut',$data);
 	}
 	public function ambilAtribut($id)
 	{

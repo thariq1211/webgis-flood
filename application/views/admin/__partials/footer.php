@@ -1,0 +1,1 @@
+<footer class="footer"> © <?php echo date("Y"); ?> <?php echo SITE_NAME; ?> </footer>
