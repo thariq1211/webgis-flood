@@ -55,27 +55,7 @@
                           <span>
                             <a href="<?php echo base_url('admin/admin/ambilAtribut/'.$k->id); ?>" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
                           </span>
-                          <span data-toggle="modal" data-target="#hapus">
-                            <a data-toggle="tooltip" data-target="#hapus" data-original-title="Hapus"> <i class="fa fa-close text-danger"></i> </a>
-                          </span>
-                          <!-- sample modal content -->
-                          <div id="hapus" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-                            <div class="modal-dialog">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h4 class="modal-title">Warning!!!</h4>
-                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                </div>
-                                <div class="modal-body">
-                                  <h5>Apakah anda yakin menghapus?</h5>
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Tidak</button>
-                                  <a href="<?php echo base_url('admin/admin/hapusAtribut/'.$k->id); ?>" type="button" class="btn btn-danger waves-effect waves-light">Iya</a>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                          <a href="<?php echo base_url('admin/admin/hapusAtribut/'.$k->id); ?>" data-toggle="tooltip" data-target="#hapus" data-original-title="Hapus"> <i class="fa fa-close text-danger"></i> </a>
                         </td>
                       </tr>
                     <?php endforeach ?>
