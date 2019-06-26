@@ -25,28 +25,17 @@
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">Data Skoring Tiap Kecamatan</h4>
-              <div class="btn-group">
-                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="ti ti-settings"></i> Opsi
-                </button>
-                <div class="dropdown-menu animated slideInUp">
-                  <a class="dropdown-item" data-toggle="modal" data-target="#TambahAtribut" href="#"><i class="ti ti-plus"></i> Tambah Data</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="<?php echo base_url('admin/UploadFile'); ?>"><i class="ti ti-upload"></i> Upload Data</a>                  
-                </div>
-              </div>
               <div class="table-responsive m-t-40">
                 <table id="myTable" class="table table-bordered table-striped">
                   <thead>
                     <tr>
                       <th>Kecamatan</th>
-                      <th>Jenis Tanah</th>
-                      <th>Kemiringan Tanah</th>
-                      <th>Penggunaan Lahan</th>
-                      <th>Orde Sungai</th>
-                      <th>Curah Hujan</th>
-                      <th>Luas Wilayah (KM2)</th>
-                      <th>Opsi</th>
+                      <th>Skor Jenis Tanah</th>
+                      <th>Skor Kemiringan Tanah</th>
+                      <th>Skor Penggunaan Lahan</th>
+                      <th>Skor Orde Sungai</th>
+                      <th>Skor Curah Hujan</th>
+                      <th>Luas Wilayah (Meter<sup>2</sup>)</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -54,18 +43,12 @@
 
                       <tr>
                         <td><?php echo $k->kecamatan; ?></td>
-                        <td><?php echo $k->jenis_tanah; ?></td>
-                        <td><?php echo $k->kemiringan; ?></td>
-                        <td><?php echo $k->penggunaan_lahan; ?></td>
-                        <td><?php echo $k->orde_sungai; ?></td>
-                        <td><?php echo $k->curah_hujan; ?></td>
-                        <td><?php echo $k->luas_wilayah; ?> <span>KM2</span></td>
-                        <td class="text-nowrap">
-                          <span>
-                            <a href="<?php echo base_url('admin/admin/ambilAtribut/'.$k->id); ?>" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
-                          </span>
-                          <a href="<?php echo base_url('admin/admin/hapusAtribut/'.$k->id); ?>" data-toggle="tooltip" data-original-title="Hapus"> <i class="fa fa-close text-danger"></i> </a>
-                        </td>
+                        <td>Skala <?php echo $k->jenis_tanah; ?></td>
+                        <td>Skala <?php echo $k->kemiringan; ?></td>
+                        <td>Skala <?php echo $k->penggunaan_lahan; ?></td>
+                        <td>Skala <?php echo $k->orde_sungai; ?></td>
+                        <td>Skala <?php echo $k->curah_hujan; ?></td>
+                        <td><?php echo $k->luas_wilayah; ?>.000 <span>M<sup>2</sup></span></td>
                       </tr>
                     <?php endforeach ?>
                   </tbody>

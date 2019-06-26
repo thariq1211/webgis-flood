@@ -23,7 +23,7 @@
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
           <!-- <h6 class="dropdown-header">Login Screens:</h6> -->
           <a class="dropdown-item" href="<?php echo base_url('admin/atribut') ?>">Data Atribut</a>
-          <a class="dropdown-item" href="<?php echo base_url('admin/cluster') ?>">Data Clustering</a>
+          <a class="dropdown-item" href="<?php echo base_url('admin/centroid') ?>">Data Clustering</a>
           </div>
       </li>
       <li class="nav-item dropdown 

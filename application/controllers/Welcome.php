@@ -30,13 +30,13 @@ class Welcome extends CI_Controller {
 		$data['centroid'] = $this->db->query('select count(sample_cluster) as cen from data_cluster');
 		$data['iterasi'] = $this->db->query('select max(iterasi) as it from centroid_temp');
 		$data['hc'] = $this->db->query('select max(hc) as hc, hasil_cluster from (select hasil_cluster, count( * ) as hc from hasil_cluster group by hasil_cluster) as A');
-		// $this->load->view('home',$data);
+		$this->load->view('index',$data);
 		
-		$this->load->view('admin/index',$data);
+		// $this->load->view('admin/index',$data);
 	}
 	public function datajember()
 	{	$data['atribut'] = $this->dataset->getAll();
-		$this->load->view('datawilayah.php',$data);
+		$this->load->view('data_atribut.php',$data);
 	}
 	public function hasilCluster()
 	{	
@@ -46,12 +46,12 @@ class Welcome extends CI_Controller {
 		$data['C4'] = $this->db->query("select count(hasil_cluster) as c4 from hasil_cluster where hasil_cluster='C4'")->result();
 		$data['C5'] = $this->db->query("select count(hasil_cluster) as c5 from hasil_cluster where hasil_cluster='C5'")->result();
 		$data['hasil_cluster'] = $this->cluster->getHasil_cluster();
-		$this->load->view('hasilclustering.php',$data);
+		$this->load->view('hasil_clustering1',$data);
 	}
 	public function petabanjir()
 	{
 		$data['hasil_cluster'] = $this->db->query("select * from data_atribut join hasil_cluster on data_atribut.id=hasil_cluster.id_atribut")->result();
-        $this->load->view('mappingbanjir.php',$data);
+        $this->load->view('pemetaan_banjir',$data);
         
 	}
 	

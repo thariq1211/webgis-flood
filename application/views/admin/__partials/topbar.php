@@ -63,14 +63,21 @@
                       <div class="dw-user-box">
                         <div class="u-img"><img src="<?php echo base_url('assets/images/users/1.jpg'); ?>" alt="user"></div>
                         <div class="u-text">
-                          <h4>Steave Jobs</h4>
-                          <p class="text-muted">varun@gmail.com</p><a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
+                        <?php 
+                        $akun = $this->db->query('select * from akun')->result();
+                        foreach ($akun as $key) {
+                        
+                         ?>
+                          <h4><?php echo $key->nama; ?></h4>
+                          <p class="text-muted"><?php echo $key->email; ?></p><?php } ?>
+                          </div>
                         </div>
                       </li>
                       <li role="separator" class="divider"></li>
-                      <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
-                      <li role="separator" class="divider"></li>
-                      <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
+                      <?php if ($this->session->userdata('cek_login') != '0') { ?>
+                      <li><a href="<?php echo base_url('admin/login/logout'); ?>"><i class="ti ti-power-off"></i> Logout</a></li><?php }else{ ?>
+                      <li><a href="<?php echo base_url('admin/login'); ?>"><i class="ti ti-control-play"></i> Login</a></li>
+                      <?php } ?>
                     </ul>
                   </div>
                 </li>

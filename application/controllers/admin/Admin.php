@@ -65,7 +65,7 @@ class Admin extends CI_Controller {
 	}
 	public function load_upload()
 	{
-		$this->load->view('admin/upload_excel.php');
+		$this->load->view('admin/upload_excel1.php');
 	}
 	public function save() {
 		$this->db->truncate('data_atribut');
@@ -157,7 +157,7 @@ class Admin extends CI_Controller {
 	public function centroid()
 	{	
 		$data['centroid'] = $this->cluster->getAll();
-		$this->load->view('admin/centroid',$data);
+		$this->load->view('admin/centroid1',$data);
 		
 	}
 	public function ambilCentroid($id)
@@ -207,7 +207,7 @@ class Admin extends CI_Controller {
 			}
 		}
 		$data['atribut'] = $this->db->query('select * from data_atribut left join rata2_atribut on data_atribut.id=rata2_atribut.id');
-		$this->load->view('admin/clustering',$data);
+		$this->load->view('admin/rata-rata_data',$data);
 	}
 	public function genCentroid()
 	{
@@ -245,24 +245,25 @@ class Admin extends CI_Controller {
 			for ($i=0; $i <$kluster ; $i++) { 
 				for ($r=0; $r <$kluster ; $r++) {	 
 					if ($arr_sort[0]==$array_sort[$r]) {
-						if($r==0) $predikat = "Banjir Tinggi";
-						else if($r==1) $predikat="Banjir Mengengah";
-						else if($r==2) $predikat="Banjir Rendah";
-						else if($r==3) $predikat="Aman";
-						else if($r==4) $predikat="Non Banjir";
+						if($r==0) $predikat = "C1";
+						else if($r==1) $predikat="C2";
+						else if($r==2) $predikat="C3";
+						else if($r==3) $predikat="C4";
+						else if($r==4) $predikat="C5";
 					}
 				}
 			}
 			$this->db->query("insert into hasil (id,predikat,d1,d2,d3,d4,d5) values('".$s->id."','".$predikat."','".$d1."','".$d2."','".$d3."','".$d4."','".$d5."')");			
 		}
 		$data['atribut'] = $this->db->query("select * from data_atribut left join (rata2_atribut,hasil) on data_atribut.id=rata2_atribut.id and data_atribut.id=hasil.id");
-		$this->load->view('admin/generate_centroid', $data);
+		// $this->load->view('admin/generate_centroid', $data);
+		$this->load->view('admin/hasil_rata-rata_data', $data);
 	}
 	public function iterasi_kmeans(){
 		$data['atribut'] = $this->db->query("select * from data_atribut");
 		$data['cluster'] = $this->db->query("select * from data_cluster");
 
-		$this->load->view('admin/kmeans_iterasi',$data);		
+		$this->load->view('admin/hitung_kmeans.php',$data);		
 	}
 	public function cekmax()
 	{
@@ -341,7 +342,7 @@ class Admin extends CI_Controller {
 				alert("Proses iterasi berakhir pada tahap ke-<?php echo $id_2nd; ?>");
 			</script>
 			<?php 
-			echo "<meta http-equiv='refresh' content='0; url=".base_url()."admin/admin/iterasi_kmeans_hasil'>";
+			echo "<meta http-equiv='refresh' content='0; url=".base_url()."admin/hasil_clustering'>";
 
 		} else {
 			$this->kmeans_next();
@@ -924,7 +925,7 @@ class Admin extends CI_Controller {
 	public function iterasi_kmeans_hasil()
 	{
 		$data['hasil_cluster'] = $this->db->query("select * from data_atribut join hasil_cluster on data_atribut.id=hasil_cluster.id_atribut");
-		$this->load->view('admin/hasil_clustering', $data);
+		$this->load->view('admin/hasil_clustering1', $data);
 	}
 	public function mapping()
 	{

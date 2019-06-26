@@ -12,7 +12,8 @@ class Login extends CI_Controller {
 	
 	public function index()
 	{
-		$this->load->view('login');
+		// $this->load->view('login');
+		$this->load->view('login1');
 	}
 
 	public function login_proses()
@@ -27,19 +28,21 @@ class Login extends CI_Controller {
 			// $this->session->set_userdata('cek_login','1'); 
 			redirect(base_url('admin/overview'));
 		} else { 
-            // login gagal 
-			$this->session->set_flashdata('gagal', 'Username atau Password Salah!'); 
-			redirect(base_url('admin/login')); 
-		} 
+            // login gagal ?>
+            <script>
+            	alert("Username atau Password Salah!!!");
+            </script> <?php
+            redirect(base_url('admin/login')); 
+        } 
 
-	}
-	public function logout()
-	{
-		$login = null;
-		$this->session->set_userdata($login);
-		$this->session->set_userdata('cek_login','0');
-		redirect(base_url(),'refresh');
-	}
+    }
+    public function logout()
+    {
+    	$login = null;
+    	$this->session->set_userdata($login);
+    	$this->session->set_userdata('cek_login','0');
+    	redirect(base_url('welcome/index'),'refresh');
+    }
 }
 
 /* End of file Login.php */

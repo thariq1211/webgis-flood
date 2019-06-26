@@ -1,6 +1,6 @@
 <div class="row page-titles fixed-top">
   <div class="col-md-5 align-self-center">
-    <h3 class="text-themecolor">Dashboard</h3>
+    <h3 class="text-themecolor"><?php echo ucfirst($this->uri->segment(2)) ?></h3>
   </div>
   <div class="col-md-7 align-self-center">
     <ol class="breadcrumb">
@@ -20,6 +20,6 @@
     </ol>
   </div>
   <div>
-    <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+    <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-home text-white"></i></button>
   </div>
 </div>
