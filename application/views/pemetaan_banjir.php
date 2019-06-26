@@ -69,23 +69,23 @@
           var color = '';
           var cluster = '';
           if (hasil_cluster == "C1") {
-           color = '#3366CC';
+           color = '#af010b';
            cluster = 'Banjir Tinggi';
         // console.log("1");
       }if(hasil_cluster == "C2"){
-       color = '#DC3912';
+       color = '#ff8901';
        cluster = 'Banjir Sedang';
         // console.log("2");
       }if(hasil_cluster == "C3"){
-       color = '#FF9900';
+       color = '#e8d403';
        cluster = 'Banjir Rendah';
         // console.log("3");
       }if (hasil_cluster == "C4") {
-       color = '#109618';
+       color = '#0265da';
        cluster = 'Banjir Aman';
         // console.log("4");
       }if(hasil_cluster == "C5"){
-       color = '#990099';
+       color = '#3a9a03';
        cluster = 'Non Banjir';
         // console.log("5");
       }

@@ -31,11 +31,11 @@
                   <thead>
                     <tr>
                      <th>Kecamatan</th>
-                    <th>Jarak C1</th>
-                    <th>Jarak C2</th>
-                    <th>Jarak C3</th>
-                    <th>Jarak C4</th>
-                    <th>Jarak C5</th>
+                    <th>Jarak ke C1</th>
+                    <th>Jarak ke C2</th>
+                    <th>Jarak ke C3</th>
+                    <th>Jarak ke C4</th>
+                    <th>Jarak ke C5</th>
                     <th>Kelompok</th>
                    </tr>
                  </thead>
