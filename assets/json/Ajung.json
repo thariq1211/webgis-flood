@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+                                                                                
+"features": [
+{ "type": "Feature", "properties": { "Name": "Ajung", "Description": "<!DOCTYPE html><html><head><\/head><body><script type=\"text\/javascript\">window.location.href=\"https:\/\/www.google.com\/earth\/rpc\/entity?lat=-8.2420815&lng=113.66347345&fid=0x2dd690cbc0f00ea9:0xf70daa405ed05f6e&hl=en&gl=us&client=earth-client&cv=7.3.2.5776&useragent=GoogleEarth\/7.3.2.5776(Windows;Microsoft Windows (6.2.9200.0);en;kml:2.2;client:Pro;type:default)\";<\/script><\/body><\/html>" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 113.6561725, -8.2359916, 0.0 ] ] } }
+
+]
+}
