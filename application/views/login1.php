@@ -56,7 +56,7 @@
                             </div>
                         </div>
                     </form>
-                    <form class="form-horizontal" id="recoverform" action="index.html">
+                    <form class="form-horizontal" id="recoverform" action="<?php echo base_url('admin/login'); ?>">
                         <div class="form-group ">
                             <div class="col-xs-12">
                                 <h3>Recover Password</h3>

@@ -30,11 +30,11 @@
                   <thead>
                     <tr>
                       <th>Kecamatan</th>
-                      <th>Skor Jenis Tanah</th>
-                      <th>Skor Kemiringan Tanah</th>
-                      <th>Skor Penggunaan Lahan</th>
-                      <th>Skor Orde Sungai</th>
-                      <th>Skor Curah Hujan</th>
+                      <th>Transformasi Jenis Tanah</th>
+                      <th>Transformasi Kemiringan Tanah</th>
+                      <th>Transformasi Penggunaan Lahan</th>
+                      <th>Transformasi Orde Sungai</th>
+                      <th>Transformasi Curah Hujan</th>
                       <th>Luas Wilayah (Meter<sup>2</sup>)</th>
                     </tr>
                   </thead>
@@ -43,11 +43,11 @@
 
                       <tr>
                         <td><?php echo $k->kecamatan; ?></td>
-                        <td>Skala <?php echo $k->jenis_tanah; ?></td>
-                        <td>Skala <?php echo $k->kemiringan; ?></td>
-                        <td>Skala <?php echo $k->penggunaan_lahan; ?></td>
-                        <td>Skala <?php echo $k->orde_sungai; ?></td>
-                        <td>Skala <?php echo $k->curah_hujan; ?></td>
+                        <td><?php echo $k->jenis_tanah; ?></td>
+                        <td><?php echo $k->kemiringan; ?></td>
+                        <td><?php echo $k->penggunaan_lahan; ?></td>
+                        <td><?php echo $k->orde_sungai; ?></td>
+                        <td><?php echo $k->curah_hujan; ?></td>
                         <td><?php echo $k->luas_wilayah; ?>.000 <span>M<sup>2</sup></span></td>
                       </tr>
                     <?php endforeach ?>

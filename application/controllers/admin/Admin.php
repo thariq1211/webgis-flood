@@ -956,7 +956,7 @@ public function iterasi_kmeans_hasil()
 	if ($session == '1') {
 		$data['hasil_cluster'] = $this->db->query("select * from data_atribut join hasil_cluster on data_atribut.id=hasil_cluster.id_atribut");
 		$this->load->view('admin/hasil_clustering1', $data);
-	}else{$this->load->view('lohin1');}
+	}else{$this->load->view('login1');}
 }
 public function mapping()
 {
