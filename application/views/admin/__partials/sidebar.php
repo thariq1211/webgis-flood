@@ -49,7 +49,7 @@
                   <li class="nav-small-cap">GUEST</li>
                   <li> <a class="waves-effect waves-dark" active href="<?php echo base_url('welcome/index'); ?>" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</span></a>
                   </li>
-                  <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-bullseye"></i><span class="hide-menu">Data Atribut Wilayah</span></a>
+                  <!-- <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-bullseye"></i><span class="hide-menu">Data Atribut Wilayah</span></a>
                     <ul aria-expanded="false" class="collapse">
                       <li><a href="<?php echo base_url('admin/atribut'); ?>">Data Jenis Tanah</a></li>
                       <li><a href="<?php echo base_url('admin/centroid'); ?>">Data Kemiringan Tanah</a></li>
@@ -57,7 +57,7 @@
                       <li><a href="<?php echo base_url('admin/centroid'); ?>">Data Buffer Sungai</a></li>
                       <li><a href="<?php echo base_url('admin/centroid'); ?>">Data Curah Hujan</a></li>
                     </ul>
-                  </li>
+                  </li> -->
                   <li> <a class="waves-effect waves-dark" active href="<?php echo base_url('welcome/data_atribut'); ?>" aria-expanded="false"><i class="mdi mdi-database"></i><span class="hide-menu">Data Transformasi Atribut</span></a>
                   </li>
                   <li> <a class="waves-effect waves-dark" active href="<?php echo base_url('welcome/hasilCluster'); ?>" aria-expanded="false"><i class="mdi mdi-format-list-bulleted-type"></i><span class="hide-menu">Hasil Cluster Wilayah</span></a>
