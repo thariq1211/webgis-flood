@@ -161,7 +161,30 @@ class Atribut_j_tanah extends CI_Controller {
 		echo '<br>';
 		echo $skala7;
 		echo '<br>';
-		
+		//perhitungan nilai transformasi
+		$nmin = min($skala1, $skala2, $skala3, $skala4, $skala5, $skala6);
+		$tf1 = $skala1+(abs($nmin)+1);
+		$tf2 = $skala2+(abs($nmin)+1);
+		$tf3 = $skala3+(abs($nmin)+1);
+		$tf4 = $skala4+(abs($nmin)+1);
+		$tf5 = $skala5+(abs($nmin)+1);
+		$tf6 = $skala6+(abs($nmin)+1);
+		$tf7 = $skala7+(abs($nmin)+1);
+		echo '<br>';
+		echo $tf1;
+		echo '<br>';
+		echo $tf2;
+		echo '<br>';
+		echo $tf3;
+		echo '<br>';
+		echo $tf4;
+		echo '<br>';
+		echo $tf5;
+		echo '<br>';
+		echo $tf6;
+		echo '<br>';
+		echo $tf7;
+		echo '<br>';
 	}
 	
 
@@ -222,56 +245,56 @@ class Atribut_j_tanah extends CI_Controller {
 	}
 	
 	//This is the error function used in the NORMDIST() function further down the page
-        function _erfVal($x) {
-                if (abs($x) > 2.2) {
-                return 1 - $this->_erfcVal($x);
-                }
-                $sum = $term = $x;
-                $xsqr = pow($x,2);
-                $j = 1;
-                do {
-                $term *= $xsqr / $j;
-                $sum -= $term / (2 * $j + 1);
-                ++$j;
-                $term *= $xsqr / $j;
-                $sum += $term / (2 * $j + 1);
-                ++$j;
-                if ($sum == 0) {
-                break;
-                }
-                } while (abs($term / $sum) > $this->$_rel_error);
-                return $this->$_two_sqrtpi * $sum;
+	function _erfVal($x) {
+		if (abs($x) > 2.2) {
+			return 1 - $this->_erfcVal($x);
+		}
+		$sum = $term = $x;
+		$xsqr = pow($x,2);
+		$j = 1;
+		do {
+			$term *= $xsqr / $j;
+			$sum -= $term / (2 * $j + 1);
+			++$j;
+			$term *= $xsqr / $j;
+			$sum += $term / (2 * $j + 1);
+			++$j;
+			if ($sum == 0) {
+				break;
+			}
+		} while (abs($term / $sum) > $this->$_rel_error);
+		return $this->$_two_sqrtpi * $sum;
         }    //    function _erfVal()
 
 // I am not sure what this function does but it is used in the NORMDIST() function further down the page
         function flattenSingleValue($value = '') {
-                if (is_array($value)) {
-                $value = $this->flattenSingleValue(array_pop($value));
-                }
-                return $value;
+        	if (is_array($value)) {
+        		$value = $this->flattenSingleValue(array_pop($value));
+        	}
+        	return $value;
         }    //    function flattenSingleValue()
 
 //Function used to calculate the normal distribution THIS IS WHERE THE MAGIC HAPPENS 
         function NORMDIST($value, $mean, $stdDev, $cumulative) {
-                $value    = $this->flattenSingleValue($value);
-                $mean    = $this->flattenSingleValue($mean);
-                $stdDev    = $this->flattenSingleValue($stdDev);
+        	$value    = $this->flattenSingleValue($value);
+        	$mean    = $this->flattenSingleValue($mean);
+        	$stdDev    = $this->flattenSingleValue($stdDev);
 
-                if ((is_numeric($value)) && (is_numeric($mean)) && (is_numeric($stdDev))) {
-                if ($stdDev < 0) {
-                return $this->$_errorCodes['num'];
-                }
-                if ((is_numeric($cumulative)) || (is_bool($cumulative))) {
-                if ($cumulative) {
-                return 0.5 * (1 + $this->_erfVal(($value - $mean) / ($stdDev * sqrt(2))));
-                } else {
-                return (1 / (sqrt(2*3.14159265358979323846) * $stdDev)) * exp(0 - (pow($value - $mean,2) / (2 * pow($stdDev,2))));
-                }
-                }
-                }
-                return $this->$_errorCodes['value'];
+        	if ((is_numeric($value)) && (is_numeric($mean)) && (is_numeric($stdDev))) {
+        		if ($stdDev < 0) {
+        			return $this->$_errorCodes['num'];
+        		}
+        		if ((is_numeric($cumulative)) || (is_bool($cumulative))) {
+        			if ($cumulative) {
+        				return 0.5 * (1 + $this->_erfVal(($value - $mean) / ($stdDev * sqrt(2))));
+        			} else {
+        				return (1 / (sqrt(2*3.14159265358979323846) * $stdDev)) * exp(0 - (pow($value - $mean,2) / (2 * pow($stdDev,2))));
+        			}
+        		}
+        	}
+        	return $this->$_errorCodes['value'];
         }    //    function NORMDIST()
-}
+    }
 
-/* End of file Atribut_j_tanah.php */
-/* Location: ./application/controllers/admin/Atribut_j_tanah.php */
+    /* End of file Atribut_j_tanah.php */
+    /* Location: ./application/controllers/admin/Atribut_j_tanah.php */
