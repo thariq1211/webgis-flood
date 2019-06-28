@@ -34,9 +34,7 @@
                   <i class="ti ti-settings"></i> Opsi
                 </button>
                 <div class="dropdown-menu animated slideInUp">
-                  <a class="dropdown-item" data-toggle="modal" data-target="#TambahAtribut" href="#"><i class="ti ti-plus"></i> Tambah Data</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="<?php echo base_url('admin/UploadFile'); ?>"><i class="ti ti-upload"></i> Upload Data</a>                  
+                  <a class="dropdown-item" data-toggle="modal" data-target="#TambahAtribut" href="#"><i class="ti ti-plus"></i> Tambah Data</a>             
                 </div>
               </div><?php } ?>
               <div class="table-responsive m-t-40">
