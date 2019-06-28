@@ -105,7 +105,7 @@ class Atribut_j_tanah extends CI_Controller {
 		$z_val1 = $this->NormSInv($prop_kum1); $z_val2 = $this->NormSInv($prop_kum2);
 		$z_val3 = $this->NormSInv($prop_kum3); $z_val4 = $this->NormSInv($prop_kum4);
 		$z_val5 = $this->NormSInv($prop_kum5); $z_val6 = $this->NormSInv($prop_kum6);
-		$z_val7 = $this->NormSInv($prop_kum7);
+		$z_val7 = 0;
 		echo $z_val1;
 		echo '<br>';
 		echo $z_val2;
@@ -123,7 +123,7 @@ class Atribut_j_tanah extends CI_Controller {
 		$z_val1_ = $this->NORMDIST($z_val1,0,1,0); $z_val2_ = $this->NORMDIST($z_val2,0,1,0);
 		$z_val3_ = $this->NORMDIST($z_val3,0,1,0); $z_val4_ = $this->NORMDIST($z_val4,0,1,0);
 		$z_val5_ = $this->NORMDIST($z_val5,0,1,0); $z_val6_ = $this->NORMDIST($z_val6,0,1,0);
-		$z_val7_ = $this->NORMDIST($z_val7,0,1,0);
+		$z_val7_ = 0;
 		echo '<br>';
 		echo $z_val1_;
 		echo '<br>';
@@ -139,8 +139,28 @@ class Atribut_j_tanah extends CI_Controller {
 		echo '<br>';
 		echo $z_val7_;
 		echo '<br>';
-		// echo $this->NORMDIST(-2.085355566,0,1,0);
-
+		// penghitungan nilai skala
+		$skala1 = (0-$z_val1_)/($prop_kum1-0);
+		$skala2 = ($z_val1_-$z_val2_)/($prop_kum2-$prop_kum1);
+		$skala3 = ($z_val2_-$z_val3_)/($prop_kum3-$prop_kum2);
+		$skala4 = ($z_val3_-$z_val4_)/($prop_kum4-$prop_kum3);
+		$skala5 = ($z_val4_-$z_val5_)/($prop_kum5-$prop_kum4);
+		$skala6 = ($z_val5_-$z_val6_)/($prop_kum6-$prop_kum5);
+		$skala7 = ($z_val6_-$z_val7_)/($prop_kum7-$prop_kum6);
+		echo $skala1;
+		echo '<br>';
+		echo $skala2;
+		echo '<br>';
+		echo $skala3;
+		echo '<br>';
+		echo $skala4;
+		echo '<br>';
+		echo $skala5;
+		echo '<br>';
+		echo $skala6;
+		echo '<br>';
+		echo $skala7;
+		echo '<br>';
 		
 	}
 	
