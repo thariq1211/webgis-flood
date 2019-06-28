@@ -43,6 +43,7 @@ class Atribut_j_tanah extends CI_Controller {
 	}
 	function proses_transformasi()
 	{
+		$this->db->truncate('n_transformasi_j_tanah');
 		$jumlahData = $this->db->query('select count(jenis_tanah) as jumlah from data_jenis_tanah')->result();
 		foreach ($jumlahData as $k){
 			$n_data = $k->jumlah;
@@ -75,70 +76,33 @@ class Atribut_j_tanah extends CI_Controller {
 		foreach ($jml_b7 as $k) {
 			$n_b7 = $k->b7;
 		}
-		// echo $n_b1;
-		// echo "<br>";
-		// echo $n_b2;
-		// echo "<br>";
-		// echo $n_b3;
-		// echo "<br>";
-		// echo $n_b4;
-		// echo "<br>";
-		// echo $n_b5;
-		// echo "<br>";
-		// echo $n_b6;
-		// echo "<br>";
-		// echo $n_b7;
+		//total data
 		$nF = $n_b1+$n_b2+$n_b3+$n_b4+$n_b5+$n_b6+$n_b7;
-		// echo "<br>";
-		// echo $nF;
 		// perhitungan frekuensi
 		$f_regosol = $n_b1*1; $f_andosol = $n_b2*2; $f_soil = $n_b3*2;
 		$f_medi = $n_b4*3; $f_alu = $n_b5*3; $f_glei = $n_b6*4; $f_grumosol = $n_b7*5;
+		$frekArr = array ($f_regosol, $f_andosol, $f_soil, $f_medi, $f_alu, $f_glei, $f_grumosol);
 		// perhitungan proporsi
 		$prop1 = $n_b1/$nF; $prop2 = $n_b2/$nF; $prop3 = $n_b3/$nF; $prop4 = $n_b4/$nF;
 		$prop5 = $n_b5/$nF; $prop6 = $n_b6/$nF; $prop7 = $n_b7/$nF;
+		$propArr = array ($prop1, $prop2, $prop3, $prop4, $prop5, $prop6, $prop7);
 		//perhitungan proporsi kumulatif
 		$prop_kum1 = $prop1; $prop_kum2 = $prop2+$prop_kum1; $prop_kum3 = $prop3+$prop_kum2;
 		$prop_kum4 = $prop4+$prop_kum3; $prop_kum5 = $prop5+$prop_kum4; $prop_kum6 = $prop6+$prop_kum5;
 		$prop_kum7 = $prop7+$prop_kum6;
+		$prop_kumArr = array($prop_kum1, $prop_kum2, $prop_kum3, $prop_kum4, $prop_kum5, $prop_kum6, $prop_kum7);
 		//perhitungan probabilitas
 		$z_val1 = $this->NormSInv($prop_kum1); $z_val2 = $this->NormSInv($prop_kum2);
 		$z_val3 = $this->NormSInv($prop_kum3); $z_val4 = $this->NormSInv($prop_kum4);
 		$z_val5 = $this->NormSInv($prop_kum5); $z_val6 = $this->NormSInv($prop_kum6);
 		$z_val7 = 0;
-		echo $z_val1;
-		echo '<br>';
-		echo $z_val2;
-		echo '<br>';
-		echo $z_val3;
-		echo '<br>';
-		echo $z_val4;
-		echo '<br>';
-		echo $z_val5;
-		echo '<br>';
-		echo $z_val6;
-		echo '<br>';
-		echo $z_val7;
+		$z_valArr = array($z_val1, $z_val2, $z_val3, $z_val4, $z_val5, $z_val6, $z_val7);
 		// perhitungan nilai densitas
 		$z_val1_ = $this->NORMDIST($z_val1,0,1,0); $z_val2_ = $this->NORMDIST($z_val2,0,1,0);
 		$z_val3_ = $this->NORMDIST($z_val3,0,1,0); $z_val4_ = $this->NORMDIST($z_val4,0,1,0);
 		$z_val5_ = $this->NORMDIST($z_val5,0,1,0); $z_val6_ = $this->NORMDIST($z_val6,0,1,0);
 		$z_val7_ = 0;
-		echo '<br>';
-		echo $z_val1_;
-		echo '<br>';
-		echo $z_val2_;
-		echo '<br>';
-		echo $z_val3_;
-		echo '<br>';
-		echo $z_val4_;
-		echo '<br>';
-		echo $z_val5_;
-		echo '<br>';
-		echo $z_val6_;
-		echo '<br>';
-		echo $z_val7_;
-		echo '<br>';
+		$z_val_Arr = array($z_val1_, $z_val2_, $z_val3_, $z_val4_, $z_val5_, $z_val6_, $z_val7_);
 		// penghitungan nilai skala
 		$skala1 = (0-$z_val1_)/($prop_kum1-0);
 		$skala2 = ($z_val1_-$z_val2_)/($prop_kum2-$prop_kum1);
@@ -147,44 +111,25 @@ class Atribut_j_tanah extends CI_Controller {
 		$skala5 = ($z_val4_-$z_val5_)/($prop_kum5-$prop_kum4);
 		$skala6 = ($z_val5_-$z_val6_)/($prop_kum6-$prop_kum5);
 		$skala7 = ($z_val6_-$z_val7_)/($prop_kum7-$prop_kum6);
-		echo $skala1;
-		echo '<br>';
-		echo $skala2;
-		echo '<br>';
-		echo $skala3;
-		echo '<br>';
-		echo $skala4;
-		echo '<br>';
-		echo $skala5;
-		echo '<br>';
-		echo $skala6;
-		echo '<br>';
-		echo $skala7;
-		echo '<br>';
+		$skalaArr = array($skala1, $skala2, $skala3, $skala4, $skala5, $skala6, $skala7);
 		//perhitungan nilai transformasi
 		$nmin = min($skala1, $skala2, $skala3, $skala4, $skala5, $skala6);
-		$tf1 = $skala1+(abs($nmin)+1);
-		$tf2 = $skala2+(abs($nmin)+1);
-		$tf3 = $skala3+(abs($nmin)+1);
-		$tf4 = $skala4+(abs($nmin)+1);
-		$tf5 = $skala5+(abs($nmin)+1);
-		$tf6 = $skala6+(abs($nmin)+1);
+		$tf1 = $skala1+(abs($nmin)+1);$tf2 = $skala2+(abs($nmin)+1);
+		$tf3 = $skala3+(abs($nmin)+1);$tf4 = $skala4+(abs($nmin)+1);
+		$tf5 = $skala5+(abs($nmin)+1);$tf6 = $skala6+(abs($nmin)+1);
 		$tf7 = $skala7+(abs($nmin)+1);
-		echo '<br>';
-		echo $tf1;
-		echo '<br>';
-		echo $tf2;
-		echo '<br>';
-		echo $tf3;
-		echo '<br>';
-		echo $tf4;
-		echo '<br>';
-		echo $tf5;
-		echo '<br>';
-		echo $tf6;
-		echo '<br>';
-		echo $tf7;
-		echo '<br>';
+		$tfArr = array($tf1, $tf2, $tf3, $tf4, $tf5, $tf6, $tf7);
+
+		for ($i = 0; $i < 7 ; $i++) {
+			$or = $i+1;
+			$coba =
+			$query = $this->db->query("insert into n_transformasi_j_tanah (id, ordinal, frekuensi, proporsi, proporsi_kum, z_score, z_score_, densitas, transformasi) values (NULL, '$or', '$frekArr[$i]', '$propArr[$i]', '$prop_kumArr[$i]', '$z_valArr[$i]', '$z_val_Arr[$i]', '$skalaArr[$i]', '$tfArr[$i]')");
+		}
+
+		// $getData = $this->db->query('select * from data_jenis_tanah')->result();
+		// foreach ($getData as $v) {
+			
+		// }
 	}
 	
 
