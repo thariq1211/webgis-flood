@@ -69,5 +69,6 @@ $route['admin/UploadFile'] = 'admin/admin/load_upload';
 $route['admin/centroid'] = 'admin/admin/centroid';
 $route['admin/kmeans'] = 'admin/admin/iterasi_kmeans';
 $route['admin/hasil_clustering'] = 'admin/admin/iterasi_kmeans_hasil';
+$route['admin/pemetaan_banjir'] = 'welcome/petabanjir';
 $route['logout'] = 'admin/login/logout';
 

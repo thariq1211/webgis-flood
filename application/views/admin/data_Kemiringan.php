@@ -42,13 +42,13 @@
                   <thead>
                     <tr>
                       <th>Kecamatan</th>
-                      <th>Kemiringan 0<sup>o</sup>-2<sup>o</sup></th>
+                      <th>Luas Kemiringan 0<sup>o</sup>-2<sup>o</sup></th>
                       <th>Bobot 1</th>
-                      <th>Kemiringan 2<sup>o</sup>-15<sup>o</sup></th>
+                      <th>Luas Kemiringan 2<sup>o</sup>-15<sup>o</sup></th>
                       <th>Bobot 2</th>
-                      <th>Kemiringan 15<sup>o</sup>-40<sup>o</sup></th>
+                      <th>Luas Kemiringan 15<sup>o</sup>-40<sup>o</sup></th>
                       <th>Bobot 3</th>
-                      <th>Kemiringan Lebih dari 40<sup>o</sup></th>
+                      <th>Luas Kemiringan Lebih dari 40<sup>o</sup></th>
                       <th>Bobot 4</th>
                       <?php $session = $this->session->userdata('cek_login');
                       if ($session == '1') { ?>
@@ -60,13 +60,13 @@
 
                       <tr>
                         <td><?php echo $j->kecamatan; ?></td>
-                        <td><?php echo $j->Column_0_2; ?></td>
+                        <td><?php echo $j->Column_0_2; ?> KM<sup>2</sup></td>
                         <td><?php echo $j->bobo1_1; ?></td>
-                        <td><?php echo $j->Column_2_15; ?></td>
+                        <td><?php echo $j->Column_2_15; ?> KM<sup>2</sup></td>
                         <td><?php echo $j->bobot_2; ?></td>
-                        <td><?php echo $j->Column_15_40; ?></td>
+                        <td><?php echo $j->Column_15_40; ?> KM<sup>2</sup></td>
                         <td><?php echo $j->bobot_3; ?></td>
-                        <td><?php echo $j->Column_40; ?></td>
+                        <td><?php echo $j->Column_40; ?> KM<sup>2</sup></td>
                         <td><?php echo $j->bobot_4; ?></td>
                         <?php $session = $this->session->userdata('cek_login');
                         if ($session == '1') { ?>

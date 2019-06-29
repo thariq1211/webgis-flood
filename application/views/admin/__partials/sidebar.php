@@ -52,7 +52,7 @@
           </li>
           <li> <a class="waves-effect waves-dark" href="<?php echo base_url('admin/hasil_clustering')?>" aria-expanded="false"><i class="ti  ti-archive"></i><span class="hide-menu">Hasil Analisis</span></a>
           </li>
-          <li> <a class="waves-effect waves-dark" active href="<?php echo base_url('welcome/pemetaan_banjir'); ?>" aria-expanded="false"><i class="mdi mdi-google-maps"></i><span class="hide-menu">Pemetaan Banjir</span></a>
+          <li> <a class="waves-effect waves-dark" active href="<?php echo base_url('admin/pemetaan_banjir'); ?>" aria-expanded="false"><i class="mdi mdi-google-maps"></i><span class="hide-menu">Pemetaan Banjir</span></a>
           </li>
           <?php } else{ ?>
           <li class="nav-small-cap">GUEST</li>
