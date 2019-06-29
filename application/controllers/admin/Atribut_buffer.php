@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Atribut_buffer extends CI_Controller {
 
-		private $tabel = "data_buffer_sungai";
+	private $tabel = "data_buffer_sungai";
 	public function __construct()
 	{
 		parent::__construct();
@@ -101,11 +101,11 @@ class Atribut_buffer extends CI_Controller {
 	function hitungNTF()
 	{
 		$buffer = $this->db->query("select kecamatan, AVG(n_transformasi) AS rata2 FROM data_buffer_sungai GROUP BY kecamatan
-")->result();
+			")->result();
 		foreach ($buffer as $v) {
 			$k = $v->rata2;
 			$kec = $v->kecamatan;
-		$query = $this->db->query("update data_atribut set orde_sungai = $k where kecamatan = '$kec'");
+			$query = $this->db->query("update data_atribut set orde_sungai = $k where kecamatan = '$kec'");
 		}
 	}
 	function NormSInv($probability) {

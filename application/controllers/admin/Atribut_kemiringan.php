@@ -120,7 +120,7 @@ class Atribut_kemiringan extends CI_Controller {
 		foreach ($kemiringan as $v) {
 			$k = $v->n_transformasi;
 			$kec = $v->kecamatan;
-		$query = $this->db->query("update data_atribut set kemiringan = $k where kecamatan = '$kec'");
+			$query = $this->db->query("update data_atribut set kemiringan = $k where kecamatan = '$kec'");
 		}
 	}
 	function NormSInv($probability) {

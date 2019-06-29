@@ -146,7 +146,7 @@ class Atribut_j_tanah extends CI_Controller {
 			// echo $kec;
 			// echo '<br>';
 			// echo $k;
-		$query = $this->db->query("update data_atribut set jenis_tanah = $k where kecamatan = '$kec'");
+			$query = $this->db->query("update data_atribut set jenis_tanah = $k where kecamatan = '$kec'");
 		}
 	}
 
