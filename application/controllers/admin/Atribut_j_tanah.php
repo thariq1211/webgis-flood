@@ -125,13 +125,30 @@ class Atribut_j_tanah extends CI_Controller {
 			$coba =
 			$query = $this->db->query("insert into n_transformasi_j_tanah (id, ordinal, frekuensi, proporsi, proporsi_kum, z_score, z_score_, densitas, transformasi) values (NULL, '$or', '$frekArr[$i]', '$propArr[$i]', '$prop_kumArr[$i]', '$z_valArr[$i]', '$z_val_Arr[$i]', '$skalaArr[$i]', '$tfArr[$i]')");
 		}
-
-		// $getData = $this->db->query('select * from data_jenis_tanah')->result();
-		// foreach ($getData as $v) {
-			
-		// }
+		$j_tanah= $this->atribut->getAll($this->tabel);
+		foreach ($j_tanah as $key) {
+			$query1 = $this->db->query("update data_jenis_tanah set n_transformasi = '$tf1' where jenis_tanah ='Regosol'");
+			$query2 = $this->db->query("update data_jenis_tanah set n_transformasi = '$tf2' where jenis_tanah ='Andosol'");
+			$query3 = $this->db->query("update data_jenis_tanah set n_transformasi = '$tf3' where jenis_tanah ='NCB Soil'");
+			$query4 = $this->db->query("update data_jenis_tanah set n_transformasi = '$tf4' where jenis_tanah ='Mediteran'");
+			$query5 = $this->db->query("update data_jenis_tanah set n_transformasi = '$tf5' where jenis_tanah ='Aluvial'");
+			$query6 = $this->db->query("update data_jenis_tanah set n_transformasi = '$tf6' where jenis_tanah ='Glei'");
+			$query7 = $this->db->query("update data_jenis_tanah set n_transformasi = '$tf7' where jenis_tanah ='Grumosol'");
+		}
 	}
-	
+	function hitungNTF()
+	{
+		$j_tanah = $this->db->query("select kecamatan, AVG(n_transformasi) AS rata2 FROM data_jenis_tanah GROUP BY kecamatan")->result();
+		foreach ($j_tanah as $v) {
+			$k = $v->rata2;
+			$kec = $v->kecamatan;
+			// echo '<br>';
+			// echo $kec;
+			// echo '<br>';
+			// echo $k;
+		$query = $this->db->query("update data_atribut set jenis_tanah = $k where kecamatan = '$kec'");
+		}
+	}
 
 	function NormSInv($probability) {
 		$a1 = -39.6968302866538; 

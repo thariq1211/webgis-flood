@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Atribut_landuse extends CI_Controller {
 
+		private $tabel = "data_penggunaan_lahan";
 	public function __construct()
 	{
 		parent::__construct();
@@ -14,8 +15,7 @@ class Atribut_landuse extends CI_Controller {
 	public function index()
 	{
 		$data['judul'] = "Data Penggunaan Lahan";
-		$tabel = "data_penggunaan_lahan";
-		$data['landuse'] = $this->atribut->getAll($tabel);
+		$data['landuse'] = $this->atribut->getAll($this->tabel);
 		$this->load->view('admin/data_Landuse', $data);
 	}
 
@@ -36,7 +36,7 @@ class Atribut_landuse extends CI_Controller {
 	{
 
 	}
-function proses_transformasi()
+	function proses_transformasi()
 	{
 		$this->db->truncate('n_transformasi_landuse');
 		$jumlahData = $this->db->query('select count(jenis_tanah) as jumlah from data_jenis_tanah')->result();
@@ -125,90 +125,107 @@ function proses_transformasi()
 			$coba =
 			$query = $this->db->query("insert into n_transformasi_landuse (id, ordinal, frekuensi, proporsi, proporsi_kum, z_score, z_score_, densitas, transformasi) values (NULL, '$or', '$frekArr[$i]', '$propArr[$i]', '$prop_kumArr[$i]', '$z_valArr[$i]', '$z_val_Arr[$i]', '$skalaArr[$i]', '$tfArr[$i]')");
 		}
-
-		// $getData = $this->db->query('select * from data_jenis_tanah')->result();
-		// foreach ($getData as $v) {
-			
-		// }
-	}
-	
-
-	function NormSInv($probability) {
-		$a1 = -39.6968302866538; 
-		$a2 = 220.946098424521;
-		$a3 = -275.928510446969;
-		$a4 = 138.357751867269;
-		$a5 = -30.6647980661472;
-		$a6 = 2.50662827745924;
-
-		$b1 = -54.4760987982241;
-		$b2 = 161.585836858041;
-		$b3 = -155.698979859887;
-		$b4 = 66.8013118877197;
-		$b5 = -13.2806815528857;
-
-		$c1 = -7.78489400243029E-03;
-		$c2 = -0.322396458041136;
-		$c3 = -2.40075827716184;
-		$c4 = -2.54973253934373;
-		$c5 = 4.37466414146497;
-		$c6 = 2.93816398269878;
-
-		$d1 = 7.78469570904146E-03;
-		$d2 = 0.32246712907004;
-		$d3 = 2.445134137143;
-		$d4 =  3.75440866190742;
-
-		$p_low = 0.02425;
-		$p_high = 1 - $p_low;
-		$q = 0;
-		$r = 0;
-		$normSInv = 0;
-		if ($probability < 0 ||
-			$probability > 1)
-		{
-			throw new \Exception("normSInv: Argument out of range.");
-		} else if ($probability < $p_low) {
-
-			$q = sqrt(-2 * log($probability));
-			$normSInv = ((((($c1 * $q + $c2) * $q + $c3) * $q + $c4) * $q + $c5) * $q + $c6) / (((($d1 * $q + $d2) * $q + $d3) * $q + $d4) * $q + 1);
-
-		} else if ($probability <= $p_high) {
-
-			$q = $probability - 0.5;
-			$r = $q * $q;
-			$normSInv = ((((($a1 * $r + $a2) * $r + $a3) * $r + $a4) * $r + $a5) * $r + $a6) * $q / ((((($b1 * $r + $b2) * $r + $b3) * $r + $b4) * $r + $b5) * $r + 1);
-
-		} else {
-
-			$q = sqrt(-2 * log(1 - $probability));
-			$normSInv = -((((($c1 * $q + $c2) * $q + $c3) * $q + $c4) * $q + $c5) * $q + $c6) /(((($d1 * $q + $d2) * $q + $d3) * $q + $d4) * $q + 1);
+		$landuse = $this->atribut->getAll($this->tabel);
+		foreach ($landuse as $v) {
+			$query1 = $this->db->query("update $this->tabel set n_transformasi = '$tf1' where bobot = 1");
+			$query2 = $this->db->query("update $this->tabel set n_transformasi = '$tf2' where bobot = 2");
+			$query3 = $this->db->query("update $this->tabel set n_transformasi = '$tf3' where bobot = 3");
+			$query4 = $this->db->query("update $this->tabel set n_transformasi = '$tf4' where bobot = 4");
+			$query5 = $this->db->query("update $this->tabel set n_transformasi = '$tf5' where bobot = 5");
+			$query6 = $this->db->query("update $this->tabel set n_transformasi = '$tf6' where bobot = 6");
+			$query7 = $this->db->query("update $this->tabel set n_transformasi = '$tf7' where bobot = 7");
+			$query8 = $this->db->query("update $this->tabel set n_transformasi = '$tf8' where bobot = 8");
 
 		}
 
-		return $normSInv;
 	}
-	
-	//This is the error function used in the NORMDIST() function further down the page
-	function _erfVal($x) {
-		if (abs($x) > 2.2) {
-			return 1 - $this->_erfcVal($x);
+function hitungNTF()
+	{
+		$landuse = $this->db->query("select kecamatan, AVG(n_transformasi) AS rata2 FROM data_penggunaan_lahan GROUP BY kecamatan
+")->result();
+		foreach ($landuse as $v) {
+			$k = $v->rata2;
+			$kec = $v->kecamatan;
+		$query = $this->db->query("update data_atribut set penggunaan_lahan = $k where kecamatan = '$kec'");
 		}
-		$sum = $term = $x;
-		$xsqr = pow($x,2);
-		$j = 1;
-		do {
-			$term *= $xsqr / $j;
-			$sum -= $term / (2 * $j + 1);
-			++$j;
-			$term *= $xsqr / $j;
-			$sum += $term / (2 * $j + 1);
-			++$j;
-			if ($sum == 0) {
-				break;
+	}
+
+		function NormSInv($probability) {
+			$a1 = -39.6968302866538; 
+			$a2 = 220.946098424521;
+			$a3 = -275.928510446969;
+			$a4 = 138.357751867269;
+			$a5 = -30.6647980661472;
+			$a6 = 2.50662827745924;
+
+			$b1 = -54.4760987982241;
+			$b2 = 161.585836858041;
+			$b3 = -155.698979859887;
+			$b4 = 66.8013118877197;
+			$b5 = -13.2806815528857;
+
+			$c1 = -7.78489400243029E-03;
+			$c2 = -0.322396458041136;
+			$c3 = -2.40075827716184;
+			$c4 = -2.54973253934373;
+			$c5 = 4.37466414146497;
+			$c6 = 2.93816398269878;
+
+			$d1 = 7.78469570904146E-03;
+			$d2 = 0.32246712907004;
+			$d3 = 2.445134137143;
+			$d4 =  3.75440866190742;
+
+			$p_low = 0.02425;
+			$p_high = 1 - $p_low;
+			$q = 0;
+			$r = 0;
+			$normSInv = 0;
+			if ($probability < 0 ||
+				$probability > 1)
+			{
+				throw new \Exception("normSInv: Argument out of range.");
+			} else if ($probability < $p_low) {
+
+				$q = sqrt(-2 * log($probability));
+				$normSInv = ((((($c1 * $q + $c2) * $q + $c3) * $q + $c4) * $q + $c5) * $q + $c6) / (((($d1 * $q + $d2) * $q + $d3) * $q + $d4) * $q + 1);
+
+			} else if ($probability <= $p_high) {
+
+				$q = $probability - 0.5;
+				$r = $q * $q;
+				$normSInv = ((((($a1 * $r + $a2) * $r + $a3) * $r + $a4) * $r + $a5) * $r + $a6) * $q / ((((($b1 * $r + $b2) * $r + $b3) * $r + $b4) * $r + $b5) * $r + 1);
+
+			} else {
+
+				$q = sqrt(-2 * log(1 - $probability));
+				$normSInv = -((((($c1 * $q + $c2) * $q + $c3) * $q + $c4) * $q + $c5) * $q + $c6) /(((($d1 * $q + $d2) * $q + $d3) * $q + $d4) * $q + 1);
+
 			}
-		} while (abs($term / $sum) > $this->$_rel_error);
-		return $this->$_two_sqrtpi * $sum;
+
+			return $normSInv;
+		}
+
+	//This is the error function used in the NORMDIST() function further down the page
+		function _erfVal($x) {
+			if (abs($x) > 2.2) {
+				return 1 - $this->_erfcVal($x);
+			}
+			$sum = $term = $x;
+			$xsqr = pow($x,2);
+			$j = 1;
+			do {
+				$term *= $xsqr / $j;
+				$sum -= $term / (2 * $j + 1);
+				++$j;
+				$term *= $xsqr / $j;
+				$sum += $term / (2 * $j + 1);
+				++$j;
+				if ($sum == 0) {
+					break;
+				}
+			} while (abs($term / $sum) > $this->$_rel_error);
+			return $this->$_two_sqrtpi * $sum;
         }    //    function _erfVal()
 
 // I am not sure what this function does but it is used in the NORMDIST() function further down the page
@@ -240,7 +257,7 @@ function proses_transformasi()
         	return $this->$_errorCodes['value'];
         }    //    function NORMDIST()
 
-}
+    }
 
-/* End of file Atribut_j_tanah.php */
-/* Location: ./application/controllers/admin/Atribut_j_tanah.php */
+    /* End of file Atribut_j_tanah.php */
+    /* Location: ./application/controllers/admin/Atribut_j_tanah.php */

@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Atribut_kemiringan extends CI_Controller {
 
+	private $tabel = "data_kemiringan";
 	public function __construct()
 	{
 		parent::__construct();
@@ -14,8 +15,7 @@ class Atribut_kemiringan extends CI_Controller {
 	public function index()
 	{
 		$data['judul'] = "Data Kemiringan Lahan";
-		$tabel = "data_kemiringan";
-		$data['kemiringan'] = $this->atribut->getAll($tabel);
+		$data['kemiringan'] = $this->atribut->getAll($this->tabel);
 		$this->load->view('admin/data_Kemiringan', $data);
 	}
 
@@ -96,11 +96,32 @@ class Atribut_kemiringan extends CI_Controller {
 			$coba =
 			$query = $this->db->query("insert into n_transformasi_kemiringan (id, ordinal, frekuensi, proporsi, proporsi_kum, z_score, z_score_, densitas, transformasi) values (NULL, '$or', '$frekArr[$i]', '$propArr[$i]', '$prop_kumArr[$i]', '$z_valArr[$i]', '$z_val_Arr[$i]', '$skalaArr[$i]', '$tfArr[$i]')");
 		}
+		$kemiringan = $this->atribut->getAll($this->tabel);
+		foreach ($kemiringan as $v) {
+			$query1 = $this->db->query("update data_kemiringan set n_tf4 = '$tf1' where bobot_4 = 1");
+			$query2 = $this->db->query("update data_kemiringan set n_tf3 = '$tf2' where bobot_3 = 2");
+			$query3 = $this->db->query("update data_kemiringan set n_tf2 = '$tf3' where bobot_2 = 3");
+			$query4 = $this->db->query("update data_kemiringan set n_tf1 = '$tf4' where bobo1_1 = 4");	
 
-		// $getData = $this->db->query('select * from data_jenis_tanah')->result();
-		// foreach ($getData as $v) {
-			
-		// }
+			$query5 = $this->db->query("update data_kemiringan set n_tf4 = 0 where bobot_4 IS NULL");
+			$query6 = $this->db->query("update data_kemiringan set n_tf3 = 0 where bobot_3 IS NULL");
+			$query7 = $this->db->query("update data_kemiringan set n_tf2 = 0 where bobot_2 IS NULL");
+			$query8 = $this->db->query("update data_kemiringan set n_tf1 = 0 where bobo1_1 IS NULL");	
+
+			$queryNilai = $this->db->query("update data_kemiringan set n_transformasi = (n_tf1+n_tf2+n_tf3+n_tf4)/4");
+		}
+		foreach ($kemiringan as $k) {
+			$n = $k->n_transformasi;
+		}
+	}
+	function hitungNTF()
+	{
+		$kemiringan = $this->atribut->getAll($this->tabel);
+		foreach ($kemiringan as $v) {
+			$k = $v->n_transformasi;
+			$kec = $v->kecamatan;
+		$query = $this->db->query("update data_atribut set kemiringan = $k where kecamatan = '$kec'");
+		}
 	}
 	function NormSInv($probability) {
 		$a1 = -39.6968302866538; 
@@ -157,7 +178,7 @@ class Atribut_kemiringan extends CI_Controller {
 
 		return $normSInv;
 	}
-	
+
 	//This is the error function used in the NORMDIST() function further down the page
 	function _erfVal($x) {
 		if (abs($x) > 2.2) {
@@ -208,7 +229,7 @@ class Atribut_kemiringan extends CI_Controller {
         	}
         	return $this->$_errorCodes['value'];
         }    //    function NORMDIST()
-}
+    }
 
-/* End of file Atribut_j_tanah.php */
-/* Location: ./application/controllers/admin/Atribut_j_tanah.php */
+    /* End of file Atribut_j_tanah.php */
+    /* Location: ./application/controllers/admin/Atribut_j_tanah.php */

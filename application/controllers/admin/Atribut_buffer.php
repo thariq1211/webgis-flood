@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Atribut_buffer extends CI_Controller {
 
+		private $tabel = "data_buffer_sungai";
 	public function __construct()
 	{
 		parent::__construct();
@@ -14,8 +15,7 @@ class Atribut_buffer extends CI_Controller {
 	public function index()
 	{
 		$data['judul'] = "Data Buffer Sungai";
-		$tabel = "data_buffer_sungai";
-		$data['buffer'] = $this->atribut->getAll($tabel);
+		$data['buffer'] = $this->atribut->getAll($this->tabel);
 		$this->load->view('admin/data_Buffer', $data);
 	}
 
@@ -90,11 +90,23 @@ class Atribut_buffer extends CI_Controller {
 			$coba =
 			$query = $this->db->query("insert into n_transformasi_buffer (id, ordinal, frekuensi, proporsi, proporsi_kum, z_score, z_score_, densitas, transformasi) values (NULL, '$or', '$frekArr[$i]', '$propArr[$i]', '$prop_kumArr[$i]', '$z_valArr[$i]', '$z_val_Arr[$i]', '$skalaArr[$i]', '$tfArr[$i]')");
 		}
+		$buffer = $this->atribut->getAll($this->tabel);
+		foreach ($buffer as $v) {
+			$query1 = $this->db->query("update $this->tabel set n_transformasi = '$tf1' where bobot = 1");
+			$query2 = $this->db->query("update $this->tabel set n_transformasi = '$tf2' where bobot = 2");
+			$query3 = $this->db->query("update $this->tabel set n_transformasi = '$tf3' where bobot = 3");
 
-		// $getData = $this->db->query('select * from data_jenis_tanah')->result();
-		// foreach ($getData as $v) {
-			
-		// }
+		}
+	}
+	function hitungNTF()
+	{
+		$buffer = $this->db->query("select kecamatan, AVG(n_transformasi) AS rata2 FROM data_buffer_sungai GROUP BY kecamatan
+")->result();
+		foreach ($buffer as $v) {
+			$k = $v->rata2;
+			$kec = $v->kecamatan;
+		$query = $this->db->query("update data_atribut set orde_sungai = $k where kecamatan = '$kec'");
+		}
 	}
 	function NormSInv($probability) {
 		$a1 = -39.6968302866538; 
@@ -202,7 +214,7 @@ class Atribut_buffer extends CI_Controller {
         	}
         	return $this->$_errorCodes['value'];
         }    //    function NORMDIST()
-}
+    }
 
-/* End of file Atribut_j_tanah.php */
-/* Location: ./application/controllers/admin/Atribut_j_tanah.php */
+    /* End of file Atribut_j_tanah.php */
+    /* Location: ./application/controllers/admin/Atribut_j_tanah.php */
