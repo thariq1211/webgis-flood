@@ -9,8 +9,9 @@ class Admin extends CI_Controller {
 		parent::__construct();
 		$this->load->model('dataset');
 		$this->load->model('cluster');
-		$this->load->library('excel');
 		$this->load->library('googlemaps');
+
+		
 	}
 	public function ceklogin($path)
 	{
@@ -49,7 +50,12 @@ class Admin extends CI_Controller {
 			$this->load->view('login1');
 		}
 	}
-	
+	function proses_transformasi()
+	{
+		echo "<h1>kontol</h1>";
+		// base_url('admin/atribut');
+		// $_SESSION['cek_tf'] = '0';
+	}
 	/*============ batas ini ============*/
 
 	public function centroid()

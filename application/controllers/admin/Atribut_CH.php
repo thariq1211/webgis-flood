@@ -38,6 +38,7 @@ class Atribut_CH extends CI_Controller {
 		$ch = $post['ch'];
 		
 		$this->db->query("update $this->tabel set kecamatan='$kecamatan', rata2='$ch' where kecamatan='$kecamatan'");
+		$_SESSION['cek_tf'] = '1';
 		redirect(base_url('admin/atribut_CH'),'refresh');
 	}
 

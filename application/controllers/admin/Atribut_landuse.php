@@ -43,6 +43,7 @@ class Atribut_landuse extends CI_Controller {
 			$this->bobot = 8;
 		}
 		$this->atribut->save($this->tabel,$this);
+		$_SESSION['cek_tf'] = '1';
 		redirect(base_url('admin/atribut_landuse'),'refresh');
 	}
 
@@ -82,6 +83,7 @@ class Atribut_landuse extends CI_Controller {
 			$bobot = 8;
 		}
 		$this->db->query("update data_penggunaan_lahan set kecamatan='$kecamatan', penggunaan_lahan='$landuse', bobot='$bobot' where kecamatan='$kecamatan' and penggunaan_lahan='$landuse1'");
+		$_SESSION['cek_tf'] = '1';
 		redirect(base_url('admin/atribut_landuse'),'refresh');
 	}
 
@@ -92,6 +94,7 @@ class Atribut_landuse extends CI_Controller {
 		$kecamatan = $data['kecamatan'];
 		$landuse = $data['landuse'];
 		$delete = $this->db->query("delete from data_penggunaan_lahan where kecamatan = '$kecamatan' and penggunaan_lahan = '$landuse'");
+		$_SESSION['cek_tf'] = '1';
 		redirect(base_url('admin/atribut_landuse'),'refresh');
 
 	}
