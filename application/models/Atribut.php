@@ -23,16 +23,9 @@ class Atribut extends CI_Model {
 	{
 		return $this->db->get_where($table, ["id_cluster" => $ID])->row();
 	}
-	public function save($table)
+	public function save($table,$column)
 	{
-		$post = $this->input->post();
-		$this->sample_cluster = $post['sample_cluster'];
-		$this->njenis_tanah = $post['njenis_tanah'];
-		$this->nkemiringan = $post['nkemiringan'];
-		$this->nlahan = $post['nlahan'];
-		$this->norde_sungai = $post['norde_sungai'];
-		$this->nCH = $post['nCH'];
-		$this->db->insert($table);
+		$this->db->insert($table,$column);
 	}
 	public function update()
 	{

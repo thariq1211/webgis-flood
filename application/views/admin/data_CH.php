@@ -25,18 +25,6 @@
           <div class="card">
             <div class="card-body">
               <h4 class="card-title"><?php echo $judul; ?></h4>
-              <?php 
-              
-              $session = $this->session->userdata('cek_login');
-              if ($session == '1') { ?>
-              <div class="btn-group">
-                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="ti ti-settings"></i> Opsi
-                </button>
-                <div class="dropdown-menu animated slideInUp">
-                  <a class="dropdown-item" data-toggle="modal" data-target="#TambahAtribut" href="#"><i class="ti ti-plus"></i> Tambah Data</a>                
-                </div>
-              </div><?php } ?>
               <div class="table-responsive m-t-40">
                 <table id="myTable" class="table table-bordered table-striped">
                   <thead>
@@ -58,9 +46,8 @@
                         if ($session == '1') { ?>
                         <td class="text-nowrap">
                           <span>
-                            <a href="<?php echo base_url('admin/admin/ambilAtribut/'.$j->kecamatan); ?>" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
+                            <a href="<?php echo base_url('admin/atribut_CH/ambilAtribut/'.$j->kecamatan); ?>" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i></a>
                           </span>
-                          <a href="<?php echo base_url('admin/admin/hapusAtribut/'.$j->kecamatan); ?>" data-toggle="tooltip" data-original-title="Hapus"> <i class="fa fa-close text-danger"></i> </a>
                         </td><?php } ?>
                       </tr>
                     <?php endforeach ?>

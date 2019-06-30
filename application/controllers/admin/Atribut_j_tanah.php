@@ -26,20 +26,73 @@ class Atribut_j_tanah extends CI_Controller {
 	// Add a new item
 	public function add()
 	{
-
+		$post = $this->input->post();
+		$this->kecamatan = $post['kecamatan'];
+		$this->jenis_tanah = $post['jenis_tanah'];
+		if ($this->jenis_tanah=="Regosol") {
+			$this->bobot = 1;
+		} else if($this->jenis_tanah=="Andosol"){
+			$this->bobot = 2;
+		}else if($this->jenis_tanah=="NCB Soil"){
+			$this->bobot = 2;
+		}else if($this->jenis_tanah=="Mediteran"){
+			$this->bobot = 3;
+		}else if($this->jenis_tanah=="Aluvial"){
+			$this->bobot = 3;
+		}else if($this->jenis_tanah=="Glei"){
+			$this->bobot = 4;
+		}else if($this->jenis_tanah=="Grumosol"){
+			$this->bobot = 5;
+		}
+		$this->atribut->save($this->tabel,$this);
+		redirect(base_url('admin/atribut_j_tanah'),'refresh');
 	}
-
-	//Update one item
-	public function update( $id = NULL )
+	public function ambilAtribut()
 	{
-
+		$data = $this->input->get();
+		$kecamatan = $data['kecamatan'];
+		$jenis_tanah = $data['jenis_tanah'];
+		// echo $kecamatan;
+		// echo '<br>';
+		// echo $jenis_tanah;
+		$d['jenis_tanah'] = $this->db->query("select * from $this->tabel where kecamatan = '$kecamatan' and jenis_tanah = '$jenis_tanah'")->result();
+		$this->load->view('admin/edit_data_jTanah',$d);
+	}
+	//Update one item
+	public function update()
+	{
+		$post = $this->input->post();
+		$kecamatan = $post['kecamatan'];
+		$jenis_tanah = $post['jenis_tanah'];
+		$jenis_tanah1 = $post['jenis_tanah1'];
+		if ($jenis_tanah=="Regosol") {
+			$bobot = 1;
+		} else if($jenis_tanah=="Andosol"){
+			$bobot = 2;
+		}else if($jenis_tanah=="NCB Soil"){
+			$bobot = 2;
+		}else if($jenis_tanah=="Mediteran"){
+			$bobot = 3;
+		}else if($jenis_tanah=="Aluvial"){
+			$bobot = 3;
+		}else if($jenis_tanah=="Glei"){
+			$bobot = 4;
+		}else if($jenis_tanah=="Grumosol"){
+			$bobot = 5;
+		}
+		$this->db->query("update data_jenis_tanah set kecamatan='$kecamatan', jenis_tanah='$jenis_tanah', bobot='$bobot' where kecamatan='$kecamatan' and jenis_tanah='$jenis_tanah1'");
+		redirect(base_url('admin/atribut_j_tanah'),'refresh');
 	}
 
 	//Delete one item
-	public function delete( $id = NULL )
+	public function delete()
 	{
-		
-		$this->atribut->delete($this->tabel,$id);
+		$data = $this->input->get();
+		$kecamatan = $data['kecamatan'];
+		$jenis_tanah = $data['jenis_tanah'];
+		$delete = $this->db->query("delete from data_jenis_tanah where kecamatan = '$kecamatan' and jenis_tanah = '$jenis_tanah'");
+		redirect(base_url('admin/atribut_j_tanah'),'refresh');
+
 	}
 	function proses_transformasi()
 	{

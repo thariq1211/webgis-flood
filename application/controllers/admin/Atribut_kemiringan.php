@@ -25,10 +25,46 @@ class Atribut_kemiringan extends CI_Controller {
 
 	}
 
-	//Update one item
-	public function update( $id = NULL )
+	public function ambilAtribut()
 	{
+		$data = $this->input->get();
+		$kecamatan = $data['kecamatan'];
+		$d['kemiringan'] = $this->db->query("select * from $this->tabel where kecamatan = '$kecamatan'")->result();
+		$this->load->view('admin/edit_data_kemiringan',$d);
+	}
 
+	//Update one item
+	public function update()
+	{
+		$post = $this->input->post();
+		$kecamatan = $post['kecamatan'];
+		$k0_2 = $post['column_0-2'];
+		$k2_15 = $post['column_2-15'];
+		$k15_40 = $post['column_15-40'];
+		$k40_ = $post['column_40'];
+		if ($k0_2>0) {
+			$bobot1 = 4;
+		} else {
+			$bobot1 = 0;
+		}
+		if ($k2_15>0) {
+			$bobot2 = 3;
+		} else {
+			$bobot2 = 0;
+		}
+		if ($k15_40>0) {
+			$bobot3 = 2;
+		} else {
+			$bobot3 = 0;
+		}
+		if ($k40_>0) {
+			$bobot4 = 1;
+		} else {
+			$bobot4 = 0;
+		}
+
+		$this->db->query("update data_kemiringan set Column_0_2='$k0_2', bobo1_1='$bobot1', Column_2_15='$k2_15', bobot_2='$bobot2', Column_15_40='$k15_40', bobot_3='$bobot3', Column_40='$k40_', bobot_4='$bobot4' where kecamatan='$kecamatan'");
+		redirect(base_url('admin/atribut_kemiringan'),'refresh');
 	}
 
 	//Delete one item

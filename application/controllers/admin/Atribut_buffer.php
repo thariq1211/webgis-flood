@@ -22,18 +22,55 @@ class Atribut_buffer extends CI_Controller {
 	// Add a new item
 	public function add()
 	{
-
+		$post = $this->input->post();
+		$this->kecamatan = $post['kecamatan'];
+		$this->buffer_sungai = $post['buffer'];
+		if ($this->buffer_sungai=="Bulu Burung") {
+			$this->bobot = 1;
+		} else if($this->buffer_sungai=="Radial"){
+			$this->bobot = 2;
+		}else if($this->buffer_sungai=="Paralel"){
+			$this->bobot = 2;
+		}
+		$this->atribut->save($this->tabel,$this);
+		redirect(base_url('admin/atribut_buffer'),'refresh');
 	}
-
+	public function ambilAtribut()
+	{
+		$data = $this->input->get();
+		$kecamatan = $data['kecamatan'];
+		$buffer = $data['buffer'];
+		// echo $kecamatan;
+		// echo '<br>';
+		// echo $jenis_tanah;
+		$d['buffer'] = $this->db->query("select * from $this->tabel where kecamatan = '$kecamatan' and buffer_sungai = '$buffer'")->result();
+		$this->load->view('admin/edit_data_buffer',$d);
+	}
 	//Update one item
 	public function update( $id = NULL )
 	{
-
+		$post = $this->input->post();
+		$kecamatan = $post['kecamatan'];
+		$buffer_sungai = $post['buffer'];
+		$buffer1 = $post['buffer1'];
+		if ($buffer_sungai=="Bulu Burung") {
+			$bobot = 1;
+		} else if($buffer_sungai=="Radial"){
+			$bobot = 2;
+		}else if($buffer_sungai=="Paralel"){
+			$bobot = 2;
+		}		$this->db->query("update $this->tabel set kecamatan='$kecamatan', buffer_sungai='$buffer_sungai', bobot='$bobot' where kecamatan='$kecamatan' and buffer_sungai='$buffer1'");
+		redirect(base_url('admin/atribut_buffer'),'refresh');
 	}
 
 	//Delete one item
 	public function delete( $id = NULL )
 	{
+		$data = $this->input->get();
+		$kecamatan = $data['kecamatan'];
+		$buffer = $data['buffer'];
+		$delete = $this->db->query("delete from $this->tabel where kecamatan = '$kecamatan' and buffer_sungai = '$buffer'");
+		redirect(base_url('admin/atribut_buffer'),'refresh');
 
 	}
 	function proses_transformasi()

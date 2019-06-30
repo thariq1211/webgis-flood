@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Atribut_CH extends CI_Controller {
 
+	private $tabel = "data_ch";
 	public function __construct()
 	{
 		parent::__construct();
@@ -14,11 +15,15 @@ class Atribut_CH extends CI_Controller {
 	public function index()
 	{
 		$data['judul'] = "Data Curah Hujan";
-		$tabel = "data_ch";
-		$data['ch'] = $this->atribut->getAll($tabel);
+		$data['ch'] = $this->atribut->getAll($this->tabel);
 		$this->load->view('admin/data_CH', $data);
 	}
-
+	function ambilAtribut($kecamatan)
+	{
+		
+		$d['ch'] = $this->db->query("select * from $this->tabel where kecamatan = '$kecamatan'")->result();
+		$this->load->view('admin/edit_data_CH',$d);
+	}
 	// Add a new item
 	public function add()
 	{
@@ -28,7 +33,12 @@ class Atribut_CH extends CI_Controller {
 	//Update one item
 	public function update( $id = NULL )
 	{
-
+		$post = $this->input->post();
+		$kecamatan = $post['kecamatan'];
+		$ch = $post['ch'];
+		
+		$this->db->query("update $this->tabel set kecamatan='$kecamatan', rata2='$ch' where kecamatan='$kecamatan'");
+		redirect(base_url('admin/atribut_CH'),'refresh');
 	}
 
 	//Delete one item

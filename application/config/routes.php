@@ -49,10 +49,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'welcome';
+$route['default_controller'] = 'welcome/index';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
-$route['dataCluster'] = 'welcome/dataCluster';
 $route['welcome/data_atribut'] = 'welcome/datajember';
 $route['welcome/pemetaan_banjir'] = 'welcome/petabanjir';
 $route['welcome/jenis_tanah'] = 'admin/atribut_j_tanah';
@@ -60,9 +59,7 @@ $route['welcome/kemiringan'] = 'admin/atribut_kemiringan';
 $route['welcome/landuse'] = 'admin/atribut_landuse';
 $route['welcome/buffer'] = 'admin/atribut_buffer';
 $route['welcome/curah_hujan'] = 'admin/atribut_CH';
-$route['petaCluster'] = 'welcome/petabanjir';
 $route['admin/overview'] = 'admin/admin';
-$route['petabanjir'] = 'admin/admin/mapping';
 $route['admin/clustering'] = 'admin/admin/clustering';
 $route['admin/atribut'] = 'admin/admin/atribut';
 $route['admin/UploadFile'] = 'admin/admin/load_upload';

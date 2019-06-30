@@ -20,71 +20,14 @@
       <!-- ============================================================== -->
       <!-- Start Page Content -->
       <!-- ============================================================== -->
-      <div class="row">
-        <div class="col-12">
-          <div class="card">
-            <div class="card-body">
-              <h4 class="card-title"><?php echo $judul; ?></h4>
-              <!-- pengecekan admin -->
-              <?php $session = $this->session->userdata('cek_login');
-              if ($session == '1') { ?>
-              <div class="btn-group">
-                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="ti ti-settings"></i> Opsi
-                </button>
-                <div class="dropdown-menu animated slideInUp">
-                  <a class="dropdown-item" data-toggle="modal" data-target="#TambahData" href="#"><i class="ti ti-plus"></i> Tambah Data</a>                
-                </div>
-              </div>
-              <?php } ?>
-              <!-- =========== -->
-              <div class="table-responsive m-t-40">
-                <table id="myTable" class="table table-bordered table-striped">
-                  <thead>
-                    <tr>
-                      <th>Kecamatan</th>
-                      <th>Jenis Tanah</th>
-                      <th>Bobot</th>
-                      <?php 
-                      $session = $this->session->userdata('cek_login');
-                      if ($session == '1') { ?>
-                      <th>Aksi</th><?php } ?>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php foreach ($jenis_tanah as $j): ?>
-
-                      <tr>
-                        <td><?php echo $j->kecamatan; ?></td>
-                        <td><?php echo $j->jenis_tanah; ?></td>
-                        <td><?php echo $j->bobot; ?></td>
-                        <?php $session = $this->session->userdata('cek_login');
-                        if ($session == '1') { ?>
-                        <td class="text-nowrap">
-                          <span>
-                            <a href="<?php echo base_url('admin/atribut_j_tanah/ambilAtribut?kecamatan='.$j->kecamatan.'&jenis_tanah='.$j->jenis_tanah); ?>" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
-                          </span>
-                          <a href="<?php echo base_url('admin/atribut_j_tanah/delete?kecamatan='.$j->kecamatan.'&jenis_tanah='.$j->jenis_tanah); ?>" data-toggle="tooltip" data-original-title="Hapus"> <i class="fa fa-close text-danger"></i> </a>
-                        </td><?php } ?>
-                      </tr>
-                    <?php endforeach ?>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       <!-- ======================================================= -->
       <!-- ======================================================= -->
       <!-- ================ modal tambah data ==================== -->
       <!-- ======================================================= -->
       <!-- ======================================================= -->
-      <div class="modal fade" id="TambahData" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
+            <div class="card">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Tambah Data Atribut</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Edit Data Atribut</h5>
               <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">×</span>
               </button>
@@ -94,13 +37,15 @@
                 <div class="card card-register mx-auto mt-1">
                   <!-- <div class="card-header">Register an Account</div> -->
                   <div class="card-body">
-                    <form class="form-material" action="<?php echo base_url('admin/atribut_j_tanah/add') ?>" method="post">
+                    <form class="form-material" action="<?php echo base_url('admin/atribut_j_tanah/update') ?>" method="post">
                       <div class="form-group">
                         <div class="form-label-group">
+                        <?php foreach ($jenis_tanah as $value): ?>
+                          <input type="hidden" name="jenis_tanah1" value="<?php echo $value->jenis_tanah ?>">
+                        <?php endforeach ?>
                         <label>Input Kecamatan</label>
                           <select class="form-control" name="kecamatan">
-                          <?php $kecamatan = $this->db->query('select * from data_jenis_tanah group by kecamatan')->result(); ?>
-                          <?php foreach ($kecamatan as $n): ?>
+                          <?php foreach ($jenis_tanah as $n): ?>
                             <option value="<?php echo $n->kecamatan ?>"><?php echo $n->kecamatan ?></option>
                           <?php endforeach ?>
                           </select>
@@ -125,12 +70,10 @@
                 </div>
               </div>
               <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                <button type="submit" class="btn btn-primary">Tambahkan</button>
+                <a href="<?php echo base_url('admin/atribut_j_tanah') ?>" class="btn btn-secondary">Batal</a>
+                <button type="submit" class="btn btn-primary">Submit</button>
               </div>
             </form>
-          </div>
-        </div>
       </div>
       <!-- ============================================================== -->
       <!-- End PAge Content -->

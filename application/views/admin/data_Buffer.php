@@ -34,7 +34,7 @@
                   <i class="ti ti-settings"></i> Opsi
                 </button>
                 <div class="dropdown-menu animated slideInUp">
-                  <a class="dropdown-item" data-toggle="modal" data-target="#TambahAtribut" href="#"><i class="ti ti-plus"></i> Tambah Data</a>             
+                  <a class="dropdown-item" data-toggle="modal" data-target="#TambahData" href="#"><i class="ti ti-plus"></i> Tambah Data</a>             
                 </div>
               </div><?php } ?>
               <div class="table-responsive m-t-40">
@@ -60,9 +60,9 @@
                         if ($session == '1') { ?>
                         <td class="text-nowrap">
                           <span>
-                            <a href="<?php echo base_url('admin/admin/ambilAtribut/'.$j->kecamatan); ?>" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
+                            <a href="<?php echo base_url('admin/atribut_buffer/ambilAtribut?kecamatan='.$j->kecamatan.'&buffer='.$j->buffer_sungai); ?>" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
                           </span>
-                          <a href="<?php echo base_url('admin/admin/hapusAtribut/'.$j->kecamatan); ?>" data-toggle="tooltip" data-original-title="Hapus"> <i class="fa fa-close text-danger"></i> </a>
+                          <a href="<?php echo base_url('admin/atribut_buffer/delete?kecamatan='.$j->kecamatan.'&buffer='.$j->buffer_sungai); ?>" data-toggle="tooltip" data-original-title="Hapus"> <i class="fa fa-close text-danger"></i> </a>
                         </td><?php } ?>
                       </tr>
                     <?php endforeach ?>
@@ -73,7 +73,63 @@
           </div>
         </div>
       </div>
-      <?php $this->load->view('admin/__partials/addAtributModal'); ?>
+     <!-- ======================================================= -->
+      <!-- ======================================================= -->
+      <!-- ================ modal tambah data ==================== -->
+      <!-- ======================================================= -->
+      <!-- ======================================================= -->
+      <div class="modal fade" id="TambahData" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Tambah Data Atribut</h5>
+              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="container">
+                <div class="card card-register mx-auto mt-1">
+                  <!-- <div class="card-header">Register an Account</div> -->
+                  <div class="card-body">
+                    <form class="form-material" action="<?php echo base_url('admin/atribut_buffer/add') ?>" method="post">
+                      <div class="form-group">
+                        <div class="form-label-group">
+                          <label>Input Kecamatan</label>
+                          <select class="form-control" name="kecamatan">
+                            <?php $kecamatan = $this->db->query('select * from data_jenis_tanah group by kecamatan')->result(); ?>
+                            <?php foreach ($kecamatan as $n): ?>
+                              <option value="<?php echo $n->kecamatan ?>"><?php echo $n->kecamatan ?></option>
+                            <?php endforeach ?>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="form-label-group">
+                          <label>Input Buffer Sungai</label>
+                          <select class="form-control" name="buffer">
+                            <?php
+                            $buffer = $this->db->query('SELECT * FROM data_buffer_sungai GROUP BY buffer_sungai ORDER BY bobot')->result();           
+                            foreach ($buffer as $l){
+                              ?>
+                              
+                              <option value="<?php echo $l->buffer_sungai ?>"><?php echo $l->buffer_sungai ?></option>
+                              <?php }?>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                  <button type="submit" class="btn btn-primary">Tambahkan</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       <!-- ============================================================== -->
       <!-- End PAge Content -->
       <!-- ============================================================== -->

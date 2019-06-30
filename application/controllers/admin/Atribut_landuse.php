@@ -22,18 +22,77 @@ class Atribut_landuse extends CI_Controller {
 	// Add a new item
 	public function add()
 	{
-
+		$post = $this->input->post();
+		$this->kecamatan = $post['kecamatan'];
+		$this->penggunaan_lahan = $post['landuse'];
+		if ($this->penggunaan_lahan=="pemukiman") {
+			$this->bobot = 1;
+		} else if($this->penggunaan_lahan=="sawah"){
+			$this->bobot = 2;
+		}else if($this->penggunaan_lahan=="perkebunan"){
+			$this->bobot = 3;
+		}else if($this->penggunaan_lahan=="ladang"){
+			$this->bobot = 4;
+		}else if($this->penggunaan_lahan=="taman nasional"){
+			$this->bobot = 5;
+		}else if($this->penggunaan_lahan=="hutan rakyat"){
+			$this->bobot = 6;
+		}else if($this->penggunaan_lahan=="hutan produksi"){
+			$this->bobot = 7;
+		}else if($this->penggunaan_lahan=="hutan lindung"){
+			$this->bobot = 8;
+		}
+		$this->atribut->save($this->tabel,$this);
+		redirect(base_url('admin/atribut_landuse'),'refresh');
 	}
 
+	public function ambilAtribut()
+	{
+		$data = $this->input->get();
+		$kecamatan = $data['kecamatan'];
+		$landuse = $data['landuse'];
+		// echo $kecamatan;
+		// echo '<br>';
+		// echo $jenis_tanah;
+		$d['landuse'] = $this->db->query("select * from $this->tabel where kecamatan = '$kecamatan' and penggunaan_lahan = '$landuse'")->result();
+		$this->load->view('admin/edit_data_landuse',$d);
+	}
 	//Update one item
 	public function update( $id = NULL )
 	{
-
+		$post = $this->input->post();
+		$kecamatan = $post['kecamatan'];
+		$landuse = $post['landuse'];
+		$landuse1 = $post['landuse1'];
+		if ($landuse=="pemukiman") {
+			$bobot = 1;
+		} else if($landuse=="sawah"){
+			$bobot = 2;
+		}else if($landuse=="perkebunan"){
+			$bobot = 3;
+		}else if($landuse=="ladang"){
+			$bobot = 4;
+		}else if($landuse=="taman nasional"){
+			$bobot = 5;
+		}else if($landuse=="hutan rakyat"){
+			$bobot = 6;
+		}else if($landuse=="hutan produksi"){
+			$bobot = 7;
+		}else if($landuse=="hutan lindung"){
+			$bobot = 8;
+		}
+		$this->db->query("update data_penggunaan_lahan set kecamatan='$kecamatan', penggunaan_lahan='$landuse', bobot='$bobot' where kecamatan='$kecamatan' and penggunaan_lahan='$landuse1'");
+		redirect(base_url('admin/atribut_landuse'),'refresh');
 	}
 
 	//Delete one item
-	public function delete( $id = NULL )
+	public function delete()
 	{
+		$data = $this->input->get();
+		$kecamatan = $data['kecamatan'];
+		$landuse = $data['landuse'];
+		$delete = $this->db->query("delete from data_penggunaan_lahan where kecamatan = '$kecamatan' and penggunaan_lahan = '$landuse'");
+		redirect(base_url('admin/atribut_landuse'),'refresh');
 
 	}
 	function proses_transformasi()
