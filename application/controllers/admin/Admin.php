@@ -73,7 +73,7 @@ class Admin extends CI_Controller {
 		// foreach ($atribut as $key) {
 		// echo $key->kecamatan;
 		// }
-		$this->load->view('admin/_partials/editCentroidModal.php', $data);
+		$this->load->view('admin/edit_centroid.php', $data);
 	}
 	public function addCentroid()
 	{
