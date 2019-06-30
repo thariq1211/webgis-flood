@@ -50,13 +50,13 @@
               <li><a href="<?php echo base_url('admin/kmeans') ?>">Penghitungan K-Means</a></li>
             </ul>
           </li>
-          <li> <a class="waves-effect waves-dark" href="<?php echo base_url('admin/hasil_clustering')?>" aria-expanded="false"><i class="ti  ti-archive"></i><span class="hide-menu">Hasil Analisis</span></a>
+          <li> <a class="waves-effect waves-dark" href="<?php echo base_url('admin/hasil_clustering')?>" aria-expanded="false"><i class="ti  ti-archive"></i><span class="hide-menu">Hasil Clustering</span></a>
           </li>
           <li> <a class="waves-effect waves-dark" active href="<?php echo base_url('admin/pemetaan_banjir'); ?>" aria-expanded="false"><i class="mdi mdi-google-maps"></i><span class="hide-menu">Pemetaan Banjir</span></a>
           </li>
           <?php } else{ ?>
           <li class="nav-small-cap">GUEST</li>
-          <li> <a class="waves-effect waves-dark" active href="<?php echo base_url('welcome/index'); ?>" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</span></a>
+          <li> <a class="waves-effect waves-dark" active href="<?php echo base_url('welcome/index'); ?>" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Overview</span></a>
           </li>
           <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-database"></i><span class="hide-menu">Data Atribut Wilayah</span></a>
             <ul aria-expanded="false" class="collapse">
@@ -69,7 +69,7 @@
           </li>
           <li> <a class="waves-effect waves-dark" active href="<?php echo base_url('welcome/data_atribut'); ?>" aria-expanded="false"><i class="mdi mdi-lamp"></i><span class="hide-menu">Data Transformasi Atribut</span></a>
           </li>
-          <li> <a class="waves-effect waves-dark" active href="<?php echo base_url('welcome/hasilCluster'); ?>" aria-expanded="false"><i class="mdi mdi-format-list-bulleted-type"></i><span class="hide-menu">Hasil Cluster Wilayah</span></a>
+          <li> <a class="waves-effect waves-dark" active href="<?php echo base_url('welcome/hasilCluster'); ?>" aria-expanded="false"><i class="mdi mdi-format-list-bulleted-type"></i><span class="hide-menu">Hasil Clustering</span></a>
           </li>
           <li> <a class="waves-effect waves-dark" active href="<?php echo base_url('welcome/pemetaan_banjir'); ?>" aria-expanded="false"><i class="mdi mdi-google-maps"></i><span class="hide-menu">Pemetaan Banjir</span></a>
           </li>

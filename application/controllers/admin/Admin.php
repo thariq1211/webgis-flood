@@ -52,9 +52,9 @@ class Admin extends CI_Controller {
 	}
 	function proses_transformasi()
 	{
-		echo "<h1>kontol</h1>";
+		// echo "<h1>kontol</h1>";
 		// base_url('admin/atribut');
-		// $_SESSION['cek_tf'] = '0';
+		$_SESSION['cek_tf'] = '0';
 	}
 	/*============ batas ini ============*/
 
