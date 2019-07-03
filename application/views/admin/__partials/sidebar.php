@@ -15,7 +15,7 @@
          foreach ($akun as $key) {
            ?>
            <h5><?php echo $key->nama; ?></h5>
-           <?php }} else{ ?>
+           <?php }} if ($this->session->userdata('cek_login') != '1') { ?>
            <h5>Guest</h5>
            <?php } ?>
          </div>

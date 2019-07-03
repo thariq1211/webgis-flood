@@ -4,13 +4,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Admin extends CI_Controller {
 
 	private $filename = 'import_data';
+
 	public function __construct()
 	{
 		parent::__construct();
 		$this->load->model('dataset');
 		$this->load->model('cluster');
 		$this->load->library('googlemaps');
-
 		
 	}
 	public function ceklogin($path)
@@ -52,9 +52,10 @@ class Admin extends CI_Controller {
 	}
 	function proses_transformasi()
 	{
-		// echo "<h1>kontol</h1>";
-		// base_url('admin/atribut');
-		$_SESSION['cek_tf'] = '0';
+		require('Atribut_j_tanah.php');
+		$j_tanah = new Atribut_j_tanah();
+		$j_tanah->hitungNTF();
+		// $_SESSION['cek_tf'] = '0';
 	}
 	/*============ batas ini ============*/
 

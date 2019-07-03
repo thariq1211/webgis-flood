@@ -134,6 +134,7 @@ class Atribut_j_tanah extends CI_Controller {
 		}
 		//total data
 		$nF = $n_b1+$n_b2+$n_b3+$n_b4+$n_b5+$n_b6+$n_b7;
+		$or = array(1,2,2,3,3,4,5);
 		// perhitungan frekuensi
 		$f_regosol = $n_b1*1; $f_andosol = $n_b2*2; $f_soil = $n_b3*2;
 		$f_medi = $n_b4*3; $f_alu = $n_b5*3; $f_glei = $n_b6*4; $f_grumosol = $n_b7*5;
@@ -177,9 +178,8 @@ class Atribut_j_tanah extends CI_Controller {
 		$tfArr = array($tf1, $tf2, $tf3, $tf4, $tf5, $tf6, $tf7);
 
 		for ($i = 0; $i < 7 ; $i++) {
-			$or = $i+1;
 			$coba =
-			$query = $this->db->query("insert into n_transformasi_j_tanah (id, ordinal, frekuensi, proporsi, proporsi_kum, z_score, z_score_, densitas, transformasi) values (NULL, '$or', '$frekArr[$i]', '$propArr[$i]', '$prop_kumArr[$i]', '$z_valArr[$i]', '$z_val_Arr[$i]', '$skalaArr[$i]', '$tfArr[$i]')");
+			$query = $this->db->query("insert into n_transformasi_j_tanah (id, ordinal, frekuensi, proporsi, proporsi_kum, z_score, z_score_, densitas, transformasi) values (NULL, '$or[$i]', '$frekArr[$i]', '$propArr[$i]', '$prop_kumArr[$i]', '$z_valArr[$i]', '$z_val_Arr[$i]', '$skalaArr[$i]', '$tfArr[$i]')");
 		}
 		$j_tanah= $this->atribut->getAll($this->tabel);
 		foreach ($j_tanah as $key) {
