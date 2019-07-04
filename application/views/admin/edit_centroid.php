@@ -43,7 +43,7 @@
                     </div>
                     <div class="col-md-6">
                       <div class="form-label-group">
-                        <input type="number" id="inputJenisTanah" name="njenis_tanah" value="<?php echo $centroid->njenis_tanah; ?>" class="form-control" placeholder="Jenis Tanah" required="required">
+                        <input type="number" id="inputJenisTanah" name="njenis_tanah" step="any" value="<?php echo $centroid->njenis_tanah; ?>" class="form-control" placeholder="Jenis Tanah" required="required">
                         <label for="inputJenisTanah">Jenis Tanah</label>
                       </div>
                     </div>
@@ -53,13 +53,13 @@
                   <div class="form-row">
                     <div class="col-md-6">
                       <div class="form-label-group">
-                        <input type="number" id="inputKemiringan" name="nkemiringan" value="<?php echo $centroid->nkemiringan; ?>" class="form-control" placeholder="Kemiringan" required="required">
+                        <input type="number" id="inputKemiringan" name="nkemiringan" step="any" value="<?php echo $centroid->nkemiringan; ?>" class="form-control" placeholder="Kemiringan" required="required">
                         <label for="inputKemiringan">Kemiringan</label>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-label-group">
-                        <input type="number" id="penggunaan_lahan" name="nlahan" value="<?php echo $centroid->nlahan; ?>" class="form-control" placeholder="Penggunaan Lahan" required="required">
+                        <input type="number" id="penggunaan_lahan" name="nlahan" step="any" value="<?php echo $centroid->nlahan; ?>" class="form-control" placeholder="Penggunaan Lahan" required="required">
                         <label for="penggunaan_lahan">Penggunaan Lahan</label>
                       </div>
                     </div>
@@ -69,13 +69,13 @@
                   <div class="form-row">
                     <div class="col-md-6">
                       <div class="form-label-group">
-                        <input type="number" id="inputOrdeSungai" name="norde_sungai" value="<?php echo $centroid->norde_sungai; ?>" class="form-control" placeholder="Orde Sungai" required="required">
+                        <input type="number" id="inputOrdeSungai" name="norde_sungai" step="any" value="<?php echo $centroid->norde_sungai; ?>" class="form-control" placeholder="Orde Sungai" required="required">
                         <label for="inputOrdeSungai">Orde Sungai</label>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-label-group">
-                        <input type="number" id="inputCH" name="nCH" value="<?php echo $centroid->nCH; ?>" class="form-control" placeholder="Curah Hujan" required="required">
+                        <input type="number" id="inputCH" name="nCH" step="any" value="<?php echo $centroid->nCH; ?>" class="form-control" placeholder="Curah Hujan" required="required">
                         <label for="inputCH">Curah Hujan</label>
                       </div>
                     </div>

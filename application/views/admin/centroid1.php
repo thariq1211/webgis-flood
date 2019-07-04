@@ -53,7 +53,7 @@
                         <span>
                           <a href="<?php echo base_url('admin/admin/ambilCentroid/'.$k->id_cluster); ?>" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
                         </span>
-                        <a href="<?php echo base_url('admin/admin/hapusCentroid/'.$k->id_cluster); ?>" data-toggle="tooltip" data-target="#hapus" data-original-title="Hapus"> <i class="fa fa-close text-danger"></i> </a>
+                        <!-- <a href="<?php echo base_url('admin/admin/hapusCentroid/'.$k->id_cluster); ?>" data-toggle="tooltip" data-target="#hapus" data-original-title="Hapus"> <i class="fa fa-close text-danger"></i> </a> -->
                       </td>
                     </tr>
                   <?php endforeach ?>

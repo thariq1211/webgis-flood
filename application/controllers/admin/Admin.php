@@ -85,7 +85,7 @@ class Admin extends CI_Controller {
 	public function editCentroid($id = null)
 	{
 		$this->cluster->update();
-		redirect(base_url('admin/admin/centroid'),'refresh');
+		redirect(base_url('admin/centroid'),'refresh');
 	}
 	public function hapusCentroid($id=null)
 	{
