@@ -64,7 +64,9 @@ class Atribut_kemiringan extends CI_Controller {
 		}
 
 		$this->db->query("update data_kemiringan set Column_0_2='$k0_2', bobo1_1='$bobot1', Column_2_15='$k2_15', bobot_2='$bobot2', Column_15_40='$k15_40', bobot_3='$bobot3', Column_40='$k40_', bobot_4='$bobot4' where kecamatan='$kecamatan'");
-		$_SESSION['cek_tf'] = '1';
+		$this->proses_transformasi();
+		$this->hitungNTF();
+		// $_SESSION['cek_tf'] = '1';
 		redirect(base_url('admin/atribut_kemiringan'),'refresh');
 	}
 

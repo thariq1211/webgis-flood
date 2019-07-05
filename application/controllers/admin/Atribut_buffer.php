@@ -33,7 +33,9 @@ class Atribut_buffer extends CI_Controller {
 			$this->bobot = 2;
 		}
 		$this->atribut->save($this->tabel,$this);
-		$_SESSION['cek_tf'] = '1';
+		$this->proses_transformasi();
+		$this->hitungNTF();
+		// $_SESSION['cek_tf'] = '1';
 		redirect(base_url('admin/atribut_buffer'),'refresh');
 	}
 	public function ambilAtribut()
@@ -61,7 +63,9 @@ class Atribut_buffer extends CI_Controller {
 		}else if($buffer_sungai=="Paralel"){
 			$bobot = 2;
 		}		$this->db->query("update $this->tabel set kecamatan='$kecamatan', buffer_sungai='$buffer_sungai', bobot='$bobot' where kecamatan='$kecamatan' and buffer_sungai='$buffer1'");
-		$_SESSION['cek_tf'] = '1';
+		$this->proses_transformasi();
+		$this->hitungNTF();
+		// $_SESSION['cek_tf'] = '1';
 		redirect(base_url('admin/atribut_buffer'),'refresh');
 	}
 
@@ -72,7 +76,10 @@ class Atribut_buffer extends CI_Controller {
 		$kecamatan = $data['kecamatan'];
 		$buffer = $data['buffer'];
 		$delete = $this->db->query("delete from $this->tabel where kecamatan = '$kecamatan' and buffer_sungai = '$buffer'");
-		$_SESSION['cek_tf'] = '1';
+		$this->proses_transformasi();
+		$this->hitungNTF();
+
+		// $_SESSION['cek_tf'] = '1';
 		redirect(base_url('admin/atribut_buffer'),'refresh');
 
 	}

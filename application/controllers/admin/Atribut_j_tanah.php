@@ -45,7 +45,9 @@ class Atribut_j_tanah extends CI_Controller {
 			$this->bobot = 5;
 		}
 		$this->atribut->save($this->tabel,$this);
-		$_SESSION['cek_tf'] = '1';
+		$this->proses_transformasi();
+		$this->hitungNTF();
+		// $_SESSION['cek_tf'] = '1';
 		redirect(base_url('admin/atribut_j_tanah'),'refresh');
 	}
 	public function ambilAtribut()
@@ -82,7 +84,9 @@ class Atribut_j_tanah extends CI_Controller {
 			$bobot = 5;
 		}
 		$this->db->query("update data_jenis_tanah set kecamatan='$kecamatan', jenis_tanah='$jenis_tanah', bobot='$bobot' where kecamatan='$kecamatan' and jenis_tanah='$jenis_tanah1'");
-		$_SESSION['cek_tf'] = '1';
+		$this->proses_transformasi();
+		$this->hitungNTF();
+		// $_SESSION['cek_tf'] = '1';
 		redirect(base_url('admin/atribut_j_tanah'),'refresh');
 	}
 
@@ -93,7 +97,10 @@ class Atribut_j_tanah extends CI_Controller {
 		$kecamatan = $data['kecamatan'];
 		$jenis_tanah = $data['jenis_tanah'];
 		$delete = $this->db->query("delete from data_jenis_tanah where kecamatan = '$kecamatan' and jenis_tanah = '$jenis_tanah'");
-		$_SESSION['cek_tf'] = '1';
+		$this->proses_transformasi();
+		$this->hitungNTF();
+
+		// $_SESSION['cek_tf'] = '1';
 		redirect(base_url('admin/atribut_j_tanah'),'refresh');
 
 	}
