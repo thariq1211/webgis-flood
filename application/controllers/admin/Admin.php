@@ -62,10 +62,10 @@ class Admin extends CI_Controller {
 	public function centroid()
 	{	
 		$session = $this->session->userdata('cek_login');
-		if ($session == '1') {
+		// if ($session == '1') {
 			$data['centroid'] = $this->cluster->getAll();
 			$this->load->view('admin/centroid1',$data);
-		}else{$this->load->view('login1');}
+		// }else{$this->load->view('login1');}
 	}
 	public function ambilCentroid($id)
 	{

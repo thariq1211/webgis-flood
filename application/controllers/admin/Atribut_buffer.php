@@ -86,7 +86,7 @@ class Atribut_buffer extends CI_Controller {
 	function proses_transformasi()
 	{
 		$this->db->truncate('n_transformasi_buffer');
-
+		//perhitungan frekuensi
 		$jml_b1 = $this->db->query('select COUNT(buffer_sungai) as b1 FROM `data_buffer_sungai` WHERE bobot=1')->result();
 		foreach ($jml_b1 as $k) {
 			$n_b1 = $k->b1;
@@ -103,9 +103,7 @@ class Atribut_buffer extends CI_Controller {
 		//total data
 		$nF = $n_b1+$n_b2+$n_b3;
 		// perhitungan frekuensi
-		$f_1 = $n_b1*1; $f_2 = $n_b2*2; 
-		$f_3 = $n_b3*3; 
-		$frekArr = array ($f_1, $f_2, $f_3);
+		$frekArr = array ($n_b1,$n_b2,$n_b3);
 		// perhitungan proporsi
 		$prop1 = $n_b1/$nF; $prop2 = $n_b2/$nF; $prop3 = $n_b3/$nF; 
 		$propArr = array ($prop1, $prop2, $prop3);

@@ -31,11 +31,6 @@
                   <thead>
                     <tr>
                      <th>Kecamatan</th>
-                    <th>Jarak data ke C1</th>
-                    <th>Jarak data ke C2</th>
-                    <th>Jarak data ke C3</th>
-                    <th>Jarak data ke C4</th>
-                    <th>Jarak data ke C5</th>
                     <th>Kelompok</th>
                    </tr>
                  </thead>
@@ -43,11 +38,6 @@
                  <?php foreach ($hasil_cluster as $key): ?>
                     <tr>
                      <td><?php echo $key->kecamatan; ?></td>
-                      <td><?php echo $key->d1; ?></td>
-                      <td><?php echo $key->d2; ?></td>
-                      <td><?php echo $key->d3; ?></td>
-                      <td><?php echo $key->d4; ?></td>
-                      <td><?php echo $key->d5; ?></td>
                       <td><?php 
                         $cluster = $key->hasil_cluster;
                         if ($cluster=="C1") {

@@ -100,9 +100,7 @@ class Atribut_kemiringan extends CI_Controller {
 		//total data
 		$nF = $n_b1+$n_b2+$n_b3+$n_b4;
 		// perhitungan frekuensi
-		$f_1 = $n_b1*1; $f_2 = $n_b2*2; 
-		$f_3 = $n_b3*3; $f_4 = $n_b4*4; 
-		$frekArr = array ($f_1, $f_2, $f_3, $f_4);
+		$frekArr = array ($n_b1, $n_b2, $n_b3, $n_b4);
 		// perhitungan proporsi
 		$prop1 = $n_b1/$nF; $prop2 = $n_b2/$nF; $prop3 = $n_b3/$nF; $prop4 = $n_b4/$nF;
 		$propArr = array ($prop1, $prop2, $prop3, $prop4);

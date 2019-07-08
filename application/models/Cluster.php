@@ -57,7 +57,7 @@ class Cluster extends CI_Model {
 
 	public function getHasil_cluster()
 	{
-		return $this->db->query("select * from data_atribut join hasil_cluster on data_atribut.id=hasil_cluster.id_atribut")->result();
+		return $this->db->query("select * from data_atribut join hasil_cluster on data_atribut.id=hasil_cluster.id_atribut order by hasil_cluster")->result();
 	}
 }
 

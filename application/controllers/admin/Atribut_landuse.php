@@ -147,9 +147,7 @@ class Atribut_landuse extends CI_Controller {
 		//total data
 		$nF = $n_b1+$n_b2+$n_b3+$n_b4+$n_b5+$n_b6+$n_b7+$n_b8;
 		// perhitungan frekuensi
-		$f_1 = $n_b1*1; $f_2 = $n_b2*2; $f_3 = $n_b3*3; $f_4 = $n_b4*4; 
-		$f_5 = $n_b5*5; $f_6 = $n_b6*6; $f_7 = $n_b7*7; $f_8 = $n_b8*8;
-		$frekArr = array ($f_1, $f_2, $f_3, $f_4, $f_5, $f_6, $f_7, $f_8);
+		$frekArr = array ($n_b1, $n_b2, $n_b3, $n_b4, $n_b5, $n_b6, $n_b7, $n_b8);
 		// perhitungan proporsi
 		$prop1 = $n_b1/$nF; $prop2 = $n_b2/$nF; $prop3 = $n_b3/$nF; $prop4 = $n_b4/$nF;
 		$prop5 = $n_b5/$nF; $prop6 = $n_b6/$nF; $prop7 = $n_b7/$nF; $prop8 = $n_b8/$nF;

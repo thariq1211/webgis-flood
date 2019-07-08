@@ -25,12 +25,9 @@
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">Hasil Transformasi Data Tiap Kecamatan</h4>
-              <?php if ($this->session->userdata('cek_tf')=='1') {
-                ?>
-                <p>Perubahan data terdeteksi!!!! <br>
-                Anda harus melakukan transformasi data terlebih dahulu!!!</p>
-                <a class="btn btn-outline-primary" href="<?php echo base_url('admin/admin/proses_transformasi'); ?>">Proses Transformasi</a>
-                <?php } if ($this->session->userdata('cek_tf')=='0') { ?>
+              
+                <!-- <a class="btn btn-outline-primary" href="<?php echo base_url('admin/admin/proses_transformasi'); ?>">Proses Transformasi</a> -->
+                
                 <div class="table-responsive m-t-40">
                   <table id="myTable" class="table table-bordered table-striped">
                     <thead>
@@ -60,7 +57,7 @@
                     </tbody>
                   </table>
                 </div>
-                <?php } ?>
+                
               </div>
             </div>
           </div>
