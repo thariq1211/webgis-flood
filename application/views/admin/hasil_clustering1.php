@@ -51,20 +51,20 @@
                       <td><?php 
                         $cluster = $key->hasil_cluster;
                         if ($cluster=="C1") {
-                          echo "Banjir Tinggi";
-                          // echo "C1";
+                          // echo "Banjir Tinggi";
+                          echo "C1";
                         } else if($cluster=="C2"){
-                          echo "Banjir Sedang";
-                          // echo "C2";
+                          // echo "Banjir Sedang";
+                          echo "C2";
                         }else if($cluster=="C3"){
-                          echo "Banjir Rendah";
-                          // echo "C3";
+                          // echo "Banjir Rendah";
+                          echo "C3";
                         }else if($cluster=="C4"){
-                          echo "Banjir Aman";
-                          // echo "C4";
+                          // echo "Banjir Aman";
+                          echo "C4";
                         }else if($cluster=="C5"){
-                          echo "Non Banjir";
-                          // echo "C5";
+                          // echo "Non Banjir";
+                          echo "C5";
                         }
                         ?></td>
                     </tr>
