@@ -32,13 +32,25 @@
                     <tr>
                       <th>Kecamatan</th>
                       <th>Luas Kemiringan 0<sup>o</sup>-2<sup>o</sup></th>
-                      <th>Bobot 1</th>
+                      <?php $session = $this->session->userdata('cek_login');
+                      if ($session == '1') { ?>
+
+                      <th>Bobot 1</th><?php } ?>
                       <th>Luas Kemiringan 2<sup>o</sup>-15<sup>o</sup></th>
-                      <th>Bobot 2</th>
+                      <?php $session = $this->session->userdata('cek_login');
+                      if ($session == '1') { ?>
+
+                      <th>Bobot 2</th><?php } ?>
                       <th>Luas Kemiringan 15<sup>o</sup>-40<sup>o</sup></th>
-                      <th>Bobot 3</th>
-                      <th>Luas Kemiringan Lebih dari 40<sup>o</sup></th>
-                      <th>Bobot 4</th>
+                      <?php $session = $this->session->userdata('cek_login');
+                      if ($session == '1') { ?>
+
+                      <th>Bobot 3</th><?php } ?>
+                      <th>Luas Kemiringan > 40<sup>o</sup></th>
+                      <?php $session = $this->session->userdata('cek_login');
+                      if ($session == '1') { ?>
+
+                      <th>Bobot 4</th><?php } ?>
                       <?php $session = $this->session->userdata('cek_login');
                       if ($session == '1') { ?>
                       <th>Aksi</th><?php } ?>
@@ -50,13 +62,21 @@
                       <tr>
                         <td><?php echo $j->kecamatan; ?></td>
                         <td><?php echo $j->Column_0_2; ?> KM<sup>2</sup></td>
-                        <td><?php echo $j->bobo1_1; ?></td>
+                        <?php $session = $this->session->userdata('cek_login');
+                        if ($session == '1') { ?>
+                        <td><?php echo $j->bobo1_1; ?></td><?php } ?>
                         <td><?php echo $j->Column_2_15; ?> KM<sup>2</sup></td>
-                        <td><?php echo $j->bobot_2; ?></td>
+                        <?php $session = $this->session->userdata('cek_login');
+                        if ($session == '1') { ?>
+                        <td><?php echo $j->bobot_2; ?></td><?php } ?>
                         <td><?php echo $j->Column_15_40; ?> KM<sup>2</sup></td>
-                        <td><?php echo $j->bobot_3; ?></td>
+                        <?php $session = $this->session->userdata('cek_login');
+                        if ($session == '1') { ?>
+                        <td><?php echo $j->bobot_3; ?></td><?php } ?>
                         <td><?php echo $j->Column_40; ?> KM<sup>2</sup></td>
-                        <td><?php echo $j->bobot_4; ?></td>
+                        <?php $session = $this->session->userdata('cek_login');
+                        if ($session == '1') { ?>
+                        <td><?php echo $j->bobot_4; ?></td><?php } ?>
                         <?php $session = $this->session->userdata('cek_login');
                         if ($session == '1') { ?>
                         <td class="text-nowrap">

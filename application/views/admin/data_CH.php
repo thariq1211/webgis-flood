@@ -25,6 +25,7 @@
           <div class="card">
             <div class="card-body">
               <h4 class="card-title"><?php echo $judul; ?></h4>
+              <h5 class="card-title">Bulan September - Desember 2018</h5>
               <div class="table-responsive m-t-40">
                 <table id="myTable" class="table table-bordered table-striped">
                   <thead>

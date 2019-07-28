@@ -44,10 +44,10 @@
                     <tr>
                       <th>Kecamatan</th>
                       <th>Jenis Tanah</th>
-                      <th>Bobot</th>
                       <?php 
                       $session = $this->session->userdata('cek_login');
                       if ($session == '1') { ?>
+                      <th>Bobot</th>
                       <th>Aksi</th><?php } ?>
                     </tr>
                   </thead>
@@ -57,9 +57,9 @@
                       <tr>
                         <td><?php echo $j->kecamatan; ?></td>
                         <td><?php echo $j->jenis_tanah; ?></td>
-                        <td><?php echo $j->bobot; ?></td>
                         <?php $session = $this->session->userdata('cek_login');
                         if ($session == '1') { ?>
+                        <td><?php echo $j->bobot; ?></td>
                         <td class="text-nowrap">
                           <span>
                             <a href="<?php echo base_url('admin/atribut_j_tanah/ambilAtribut?kecamatan='.$j->kecamatan.'&jenis_tanah='.$j->jenis_tanah); ?>" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
