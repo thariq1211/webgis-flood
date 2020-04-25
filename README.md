@@ -1,14 +1,14 @@
-## webgis-banjir
+# webgis-banjir
 
 Sistem pemetaan banjir menggunakan pendekatan clustering k-means clustering
 
-# Clone
+## Clone
 
 ```bash
 git clone https://github.com/thariq1211/webgis-flood.git
 ```
 
-## daftar menu >
+# daftar menu >
 
 1. Home
 2. Halaman Peta Administrasi Jember
